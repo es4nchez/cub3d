@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -12,27 +13,7 @@
 
 #include "../inc/cub3d.h"
 
-void	init_data(t_data *data)
-{
-	data->rc.dirX = -1;
-	data->rc.dirY = 0;
-	data->rc.planeX = 0;
-	data->rc.planeY = 0.66;
-	data->rc.dirX = 0;
-	data->rc.dirX = 0;
-
-}
-
-void	init_game(t_data *data)
-{
-	create_map(data);
-	init_data(data);
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "Duckenstein");
-
-}
-
-void	create_map(t_data *data)
+void	get_pos(t_data *data)
 {
 	int			x;
 	int			y;
@@ -42,51 +23,116 @@ void	create_map(t_data *data)
 	i = 0;
 	y = 0;
 	control = 0;
-	while (y <= data->mapHeight && *data->buff)
+	while (y <= data->mapHeight && data->buff[i])
 	{
 		x = 0;
-		while (x <= data->mapWidth && *data->buff)
+		while (x <= data->mapWidth && data->buff[i])
 		{
-			if (*data->buff == 'P')
+			if (data->buff[i] == 'P')
 			{
-				data->rc.posX = x;
-				data->rc.posY = y + 1;
-				printf("\nStart : %d %d\n", x, y + 1);
+				printf("\nx : %d\ny : %d\n", x, y);
+//				data->rc->posX = x;
+//				data->rc->posY = y + 1;
+//				printf("\nStart : %d %d\n", x, y + 1);
 			}
-			data->buff++;
+			i++;
 			control++;
 			x += 1;
 		}
 		y += 1;
 	}
-	data->buff -= control;
+//	data->buff -= control;
 }
 
 void	load_map(t_data *data, char *s)
 {
-	int	fd;
-	int	i;
-	int	j;
+	(void)s;
+	int	**map;
 
-	i = 0;
-	j = 0;
-	data->buff = malloc(sizeof(char) * 2000);
-	fd = open(s, O_RDONLY);
-	j = read(fd, data->buff, 2000);
-	data->buff[j] = '\0';
-	close(fd);
-	while (data->buff[i] != 0)
-	{
-		if (data->buff[i] != '\n')
-			data->mapWidth++;
-		else
-		{
-			data->mapWidth = 0;
-			data->mapHeight++;
-		}
-		i++;
-	}
-	data->mapHeight += 1;
+	map = malloc(sizeof(int *) * 10);
+	map[0] = malloc(sizeof(int) * 15);
+	map[0][0] = 1;
+	map[0][1] = 1;
+	map[0][2] = 1;
+	map[0][3] = 1;
+	map[0][4] = 1;
+	map[0][5] = 1;
+	map[0][6] = 1;
+	map[0][7] = 1;
+	map[0][8] = 1;
+	map[0][9] = 1;
+	map[0][10] = 1;
+	map[0][11] = 1;
+	map[0][12] = 1;
+	map[0][13] = 1;
+	map[0][14] = 1;
+	map[1] = malloc(sizeof(int) * 15);
+	map[1][0] = 1;
+	map[1][1] = 0;
+	map[1][2] = 0;
+	map[1][3] = 0;
+	map[1][4] = 1;
+	map[1][5] = 1;
+	map[1][6] = 1;
+	map[1][7] = 1;
+	map[1][8] = 1;
+	map[1][9] = 0;
+	map[1][10] = 1;
+	map[1][11] = 1;
+	map[1][12] = 1;
+	map[1][13] = 1;
+	map[1][14] = 1;
+	map[2] = malloc(sizeof(int) * 15);
+	map[2][0] = 1;
+	map[2][1] = 0;
+	map[2][2] = 0;
+	map[2][3] = 0;
+	map[2][4] = 0;
+	map[2][5] = 0;
+	map[2][6] = 0;
+	map[2][7] = 0;
+	map[2][8] = 0;
+	map[2][9] = 0;
+	map[2][10] = 0;
+	map[2][11] = 1;
+	map[2][12] = 1;
+	map[2][13] = 1;
+	map[2][14] = 1;
+	map[3] = malloc(sizeof(int) * 15);
+	map[3][0] = 1;
+	map[3][1] = 0;
+	map[3][2] = 0;
+	map[3][3] = 4;
+	map[3][4] = 0;
+	map[3][5] = 1;
+	map[3][6] = 1;
+	map[3][7] = 1;
+	map[3][8] = 1;
+	map[3][9] = 1;
+	map[3][10] = 1;
+	map[3][11] = 1;
+	map[3][12] = 1;
+	map[3][13] = 1;
+	map[3][14] = 1;
+	map[4] = malloc(sizeof(int) * 15);
+	map[4][0] = 1;
+	map[4][1] = 1;
+	map[4][2] = 1;
+	map[4][3] = 1;
+	map[4][4] = 1;
+	map[4][5] = 1;
+	map[4][6] = 1;
+	map[4][7] = 1;
+	map[4][8] = 1;
+	map[4][9] = 1;
+	map[4][10] = 1;
+	map[4][11] = 1;
+	map[4][12] = 1;
+	map[4][13] = 1;
+	map[4][14] = 1;
+	data->mapWidth = 5;
+	data->mapHeight = 15;
+	data->map = map;
 	printf("\nx : %f\ny : %f\n", data->mapWidth, data->mapHeight);
 	return ;
 }

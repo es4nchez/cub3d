@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-
+/*
 void	raydirection(t_data *data)
 {
 	int x;
@@ -28,13 +28,34 @@ void	raydirection(t_data *data)
 //		printf("rayDirX : %f\n", data->rc.rayDirX);
 //		printf("rayDirY : %f\n", data->rc.rayDirY);
 	}
-
+	printf("posX : %f\nposY : %f\n", data->rc.posX, data->rc.posY);
 	data->rc.mapX = (int)data->rc.posX;	//which box of the map we're in
 	data->rc.mapY = (int)data->rc.posY;	//
 
+	if(data->rc.side == 0)
+		data->rc.perpWallDist = (data->rc.sideDistX - data->rc.deltaDistX); //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
+	else
+		data->rc.perpWallDist = (data->rc.sideDistY - data->rc.deltaDistY);
+
 }
 
-void	calculate_next_step(t_data *data)
+void	pre_rendering(t_data *data)
+{
+	//Calculate height of line to draw on screen
+	data->render->h = WIN_H;
+	data->render->lineHeight = (int)(data->render->h / data->rc.perpWallDist);
+
+	//calculate lowest and highest pixel to fill in current stripe
+	data->render->drawStart = -data->render->lineHeight / 2 + data->render->h / 2;
+	if(data->render->drawStart < 0)
+		data->render->drawStart = 0;
+	data->render->drawEnd = data->render->lineHeight / 2 + data->render->h / 2;
+	if(data->render->drawEnd >= data->render->h)
+		data->render->drawEnd = data->render->h - 1;
+
+}
+
+void	precalculate_next_step(t_data *data)
 {
 	  //calculate step and initial sideDist
 	if (data->rc.rayDirX < 0)
@@ -55,22 +76,18 @@ void	calculate_next_step(t_data *data)
 	else
 	{
 		data->rc.stepY = 1;
-		data->rc.sideDistY = (data->rc.mapY + data->rc.1.0 - data->rc.posY) * data->rc.deltaDistY;
+		data->rc.sideDistY = (data->rc.mapY + 1.0 - data->rc.posY) * data->rc.deltaDistY;
 	}
+//	printf("Dist side X : %f\nDist side Y : %f\n", data->rc.sideDistX, data->rc.sideDistY);
 }
-
-void	raycasting(t_data *data)
+*/
+int	raycasting(t_data *data)
 {
-
-	if (data->rc.rayDirX == 0)
-		data->rc.deltaDistX = 1e30;
-	else
-		data->rc.deltaDistX = fabs(1 / data->rc.rayDirX);   //length of ray from current position to next x or y-side
-	if (data->rc.rayDirY == 0)
-		data->rc.deltaDistY = 1e30;
-	else
-		data->rc.deltaDistY = fabs(1 / data->rc.rayDirY);
-
-	data->rc.hit = 0; //was there a wall hit?
-
+	data->img = malloc(sizeof(t_imgptr));
+    data->img->img = mlx_new_image(data->mlx, 1920, 1080);
+    data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
+    draw_vert(data, 200, 200, 50);
+	minimap(data);
+    mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+	return (1);
 }
