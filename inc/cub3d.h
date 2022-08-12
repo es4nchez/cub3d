@@ -54,31 +54,6 @@ typedef struct s_img {
 	int		img_height;
 }				t_img;
 
-typedef struct s_rc {
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	int		hit;
-	int		side; //was a NS or a EW wall hit?
-	double	posX;
-	double	posY;	// x and y start position
-	double	dirX;	// = -1;
-	double	dirY;	// = 0; // initial direction vector
-	double	planeX;	// = 0,
-	double	planeY;	// = 0.66; // the 2d raycaster version of camera plane
-	double	time;	// = 0; // time of current frame
-	double	oldTime;	// = 0; // time of previous frame
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	double	sideDistX;  //length of ray from current position to next x or y-side
-	double	sideDistY;
-
-}				t_rc;
 
 typedef struct s_line {
 	float	x1;
@@ -105,7 +80,6 @@ typedef struct s_data {
 	int			j;
 	char		*buff;
 	int			**map;
-	t_rc		rc;
 	t_line		line;
 	t_imgptr	*img;
 	double		mapWidth;
@@ -113,6 +87,10 @@ typedef struct s_data {
 	float		pPosX;
 	float		pPosY;
 	int			pDir;
+	float		planeX;
+	float		planeY;
+	float		dirX;
+	float		dirY;
 	float		speed;
 	int			minimapSize;
 

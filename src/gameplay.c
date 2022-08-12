@@ -30,7 +30,6 @@ int	gameplay(int keycode, t_data *data)
 	if (keycode == 2)
 		move_right(data);
 	printf("Player pos : %f - %f  dir : %d\n", data->pPosX, data->pPosY, data->pDir);
-	raycasting(data);
-
+//	minimap(data);
 	return (0);
 }

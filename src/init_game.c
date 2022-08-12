@@ -16,13 +16,10 @@ void	init_data(t_data *data)
 {
 //	t_rc	*rc;
 
-	data->rc.hit = -1;
-	data->rc.dirX = -1;
-	data->rc.dirY = 0;
-	data->rc.planeX = 0;
-	data->rc.planeY = 0.66;
-	data->rc.dirX = 0;
-	data->rc.dirX = 0;
+	data->planeX = 0;
+	data->planeY = 0.66;
+	data->dirX = 0;
+	data->dirY = -1;
 }
 
 void	init_game(t_data *data, char *mapPath)
@@ -30,7 +27,7 @@ void	init_game(t_data *data, char *mapPath)
 	(void)mapPath;
 //	load_map(data, mapPath);
 //	get_pos(data);
-//	init_data(data);
+	init_data(data);
 	data->pPosX = 3;
 	data->pPosY = 3;
 	data->pDir = 0;

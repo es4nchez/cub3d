@@ -31,9 +31,17 @@ int	draw_sqr_minimap(t_data *data, t_map minimap, int color)
 	return (0);
 }
 
-int	print_player(t_data *data)
+int	minimap_player(t_data *data)
 {
 	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP) + 1,GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) - 1, GRN);
 	return (0);
 }
 
@@ -52,6 +60,17 @@ int	print_minimap(t_data *data, int x, int y, int nb)
 	return (0);
 }
 
+int	minimap_dir(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (++i <= 8)
+		ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) - i, BLU);
+	return (0);
+}
+
+
 int	minimap(t_data *data)
 {
 	int	i;
@@ -65,7 +84,9 @@ int	minimap(t_data *data)
 			print_minimap(data, i, j, data->map[i][j]);
 		i++;
 	}
-	print_player(data);
+	minimap_dir(data);
+	minimap_player(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
 
