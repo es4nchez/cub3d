@@ -24,6 +24,8 @@
 # include <string.h>
 # include <math.h>
 
+#include "../libft/libft.h"
+
 #define WIN_W 5120 / 4
 #define WIN_H 2880 / 4
 
@@ -115,6 +117,13 @@ typedef struct s_data {
 	int			pDir;
 	float		speed;
 	int			minimapSize;
+
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*f;
+	char		*c;
 
 }				t_data;
 

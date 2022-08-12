@@ -58,7 +58,7 @@ int	minimap(t_data *data)
 	int	j;
 
 	i = 0;
-	while (i < data->mapWidth)
+	while (i < data->mapWidth - 1)
 	{
 		j = -1;
 		while (++j < data->mapHeight)
