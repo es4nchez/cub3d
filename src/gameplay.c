@@ -26,10 +26,10 @@ int	gameplay(int keycode, t_data *data)
 	if (keycode == 1)
 		move_back(data);
 	if (keycode == 0)
-		move_left(data);
-	if (keycode == 2)
 		move_right(data);
-	printf("Player pos : %f - %f  dir : %d\n", data->pPosX, data->pPosY, data->pDir);
+	if (keycode == 2)
+		move_left(data);
+	printf("Player pos : %f - %f  dir : %d | dirx : %f diry : %f\n", data->pPosX, data->pPosY, data->pDir, data->pDirX, data->pDirY);
 //	minimap(data);
 	return (0);
 }

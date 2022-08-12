@@ -30,6 +30,8 @@
 #define SPD	0.05
 #define SMP 10
 
+#define RSP	0.1
+
 #define RED 0x00FF0000
 #define WHT 0x00FFFFFF
 #define	GRN 0x0000FF00
@@ -86,6 +88,8 @@ typedef struct s_data {
 	double		mapHeight;
 	float		pPosX;
 	float		pPosY;
+	float		pDirX;
+	float		pDirY;
 	int			pDir;
 	float		planeX;
 	float		planeY;

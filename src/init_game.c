@@ -18,8 +18,15 @@ void	init_data(t_data *data)
 
 	data->planeX = 0;
 	data->planeY = 0.66;
-	data->dirX = 0;
-	data->dirY = -1;
+}
+
+void	init_player(t_data *data)
+{
+	data->pPosX = 3;
+	data->pPosY = 3;
+	data->pDir = 0;
+	data->pDirX = 0;
+	data->pDirY = -1;
 }
 
 void	init_game(t_data *data, char *mapPath)
@@ -28,9 +35,7 @@ void	init_game(t_data *data, char *mapPath)
 //	load_map(data, mapPath);
 //	get_pos(data);
 	init_data(data);
-	data->pPosX = 3;
-	data->pPosY = 3;
-	data->pDir = 0;
+	init_player(data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "Duckenstein");
 }
