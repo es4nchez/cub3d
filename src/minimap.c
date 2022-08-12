@@ -62,11 +62,20 @@ int	print_minimap(t_data *data, int x, int y, int nb)
 
 int	minimap_dir(t_data *data)
 {
-	int	i;
+	int		i;
+	float	s;
+	float	x;
+	float	y;
 
 	i = 0;
+	s = 0.1;
 	while (++i <= 8)
-		ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) - i, BLU);
+	{
+		x = data->pPosX + data->pDirX * s;
+		y = data->pPosY + data->pDirY * s;
+		ft_mlx_pixel_put(data->img, (x * SMP), (y * SMP), BLU);
+		s += 0.2;
+	}
 	return (0);
 }
 
@@ -84,8 +93,8 @@ int	minimap(t_data *data)
 			print_minimap(data, i, j, data->map[i][j]);
 		i++;
 	}
-	minimap_dir(data);
 	minimap_player(data);
+	minimap_dir(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }

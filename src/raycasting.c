@@ -84,10 +84,9 @@ void	precalculate_next_step(t_data *data)
 int	raycasting(t_data *data)
 {
 	data->img = malloc(sizeof(t_imgptr));
-    data->img->img = mlx_new_image(data->mlx, 1920, 1080);
-    data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
-    draw_vert(data, 200, 200, 50);
-	minimap(data);
-    mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+ //   data->img->img = mlx_new_image(data->mlx, 1920, 1080);
+//    data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
+//	minimap(data);
+ //   mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (1);
 }
