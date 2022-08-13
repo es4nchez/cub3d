@@ -110,7 +110,7 @@ typedef struct s_data {
 }				t_data;
 
 // Project functions
-void	load_map(t_data *data, char *s);
+int		load_map(t_data *data, char *s);
 void	get_pos(t_data *data);
 void	create_intmap(t_data *data);
 void	init_game(t_data *data, char *mapPath);

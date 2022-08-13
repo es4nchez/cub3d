@@ -24,8 +24,9 @@ int	main(int ac, char **av)
 	(void)ac;
 	t_data	data;
 
-	printf("\nStart game\n\n");
-	load_map(&data, av[1]);
+	printf("\nStarting game...\n\n");
+	if (!load_map(&data, av[1]))
+		return (0);
 	init_game(&data, av[1]);
 	printf("\nInit done.\n\n");
 	mlx_loop_hook(data.mlx, raycasting, &data);

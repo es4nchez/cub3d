@@ -46,10 +46,9 @@ void	get_pos(t_data *data)
 int	read_map(t_data *data, char *filename);
 
 
-void	load_map(t_data *data, char *s)
+int	load_map(t_data *data, char *s)
 {
-	(void)s;
-//	int	**map;
+//	(void)s;
 
 	data->no = NULL;
 	data->so = NULL;
@@ -58,14 +57,11 @@ void	load_map(t_data *data, char *s)
 	data->f = NULL;
 	data->c = NULL;
 
-	if (!read_map(data, "maps/little.cub"))
+	if (!read_map(data, s))
+	{
 		printf("PARSE ERROR\n");
-
-
-//	map[4][14] = 1;
-//	data->mapWidth = 5;
-//	data->mapHeight = 15;
-//	data->map = map;
+		return (0);
+	}
 	printf("\nx : %f\ny : %f\n", data->mapWidth, data->mapHeight);
-	return ;
+	return (1);
 }

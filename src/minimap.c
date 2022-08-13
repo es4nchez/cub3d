@@ -91,9 +91,13 @@ int	minimap(t_data *data)
 	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
 	while (i < data->mapWidth)
 	{
-		j = -1;
-		while (++j < data->mapHeight)
+		j = 0;
+		while (j < data->mapHeight)
+		{
+			printf("i : %d | j :%d\n", i, j);
 			print_minimap(data, i, j, data->map[i][j]);
+			j++;
+		}
 		i++;
 	}
 	minimap_player(data);
