@@ -86,6 +86,9 @@ int	minimap(t_data *data)
 	int	j;
 
 	i = 0;
+	data->img = malloc(sizeof(t_imgptr));
+	data->img->img = mlx_new_image(data->mlx, 1920, 1080);
+	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
 	while (i < data->mapWidth)
 	{
 		j = -1;

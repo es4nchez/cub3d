@@ -36,10 +36,5 @@ int	gameplay(int keycode, t_data *data)
 	if (keycode == 124)
 		move_left(data);
 //	printf("Player pos : %f - %f  dir : %d | dirx : %f diry : %f\n", data->pPosX, data->pPosY, data->pDir, data->pDirX, data->pDirY);
-	data->img = malloc(sizeof(t_imgptr));
-    data->img->img = mlx_new_image(data->mlx, 1920, 1080);
-    data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
-	minimap(data);
-    mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }

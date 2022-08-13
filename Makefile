@@ -54,7 +54,7 @@ $(BUILDDIR)%.o:$(SRCDIR)%.c
 			@echo "$(_CLEAR)"
 
 $(LIBFT):
-			@$(MAKE) $(LIBFTDIR) bonus
+			@$(MAKE) $(LIBFTDIR) all bonus
 
 $(NAME): $(BUILDDIR) $(LIBFT) $(OBJS)
 			@$(CC) $(CFLAGS) $(OPTION) -o $@ $(OBJS) $(LIBFT) $(LIBS)
