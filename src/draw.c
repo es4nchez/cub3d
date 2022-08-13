@@ -20,17 +20,19 @@ void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	draw_vert(t_data *data, float x, float y, float h)
+int	draw_vert(t_data *data, int x, int y, int y2)
 {
-    while (h > 0)
+//	printf("line : %d to %d\n", y, y2);
+    while (y > y2)
     {
+    //	printf("pixel putted on : %d - %d\n", x, y);
 		ft_mlx_pixel_put(data->img, x, y, BLU);
-		y++;
-		h--;
+		y--;
 	}
 //	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
     return (0);
 }
+
 
 int	draw_line(t_data *data)
 {

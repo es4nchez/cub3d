@@ -21,6 +21,7 @@ int	move_lateral_left(t_data *data);
 
 int	gameplay(int keycode, t_data *data)
 {
+//	printf("key press : %d\n", keycode);
 	if (keycode == 53)
 		exit_game(data);
 	if (keycode == 13)
@@ -35,6 +36,8 @@ int	gameplay(int keycode, t_data *data)
 		move_right(data);
 	if (keycode == 124)
 		move_left(data);
+	if (keycode == 46)
+		data->activateMinimap *= -1;
 //	printf("Player pos : %f - %f  dir : %d | dirx : %f diry : %f\n", data->pPosX, data->pPosY, data->pDir, data->pDirX, data->pDirY);
 	return (0);
 }

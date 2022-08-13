@@ -18,22 +18,25 @@ void	init_data(t_data *data)
 
 	data->planeX = 0;
 	data->planeY = 0.66;
+	data->activateMinimap = 1;
 }
 
 void	init_player(t_data *data)
 {
-	data->pPosX = 3;
-	data->pPosY = 3;
-	data->pDir = 0;
 	data->pDirX = 0;
-	data->pDirY = -1;
+	data->pDirY = 0;
+	if (data->pDir == 0)
+		data->pDirY = -1;
+	if (data->pDir == 1)
+		data->pDirY = 1;
+	if (data->pDir == 2)
+		data->pDirX = 1;
+	if (data->pDir == 3)
+		data->pDirX = -1;
 }
 
-void	init_game(t_data *data, char *mapPath)
+void	init_game(t_data *data)
 {
-	(void)mapPath;
-//	load_map(data, mapPath);
-//	get_pos(data);
 	init_data(data);
 	init_player(data);
 	data->mlx = mlx_init();

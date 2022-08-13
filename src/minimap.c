@@ -54,7 +54,7 @@ int	print_minimap(t_data *data, int x, int y, int nb)
 	if (nb == 0 )
 		draw_sqr_minimap(data, minimap, WHT);
 	if (nb == 1)
-		draw_sqr_minimap(data, minimap, RED);
+		draw_sqr_minimap(data, minimap, GRY);
 	if (nb == 4)
 		draw_sqr_minimap(data, minimap, WHT);
 	return (0);
@@ -86,23 +86,15 @@ int	minimap(t_data *data)
 	int	j;
 
 	i = 0;
-	data->img = malloc(sizeof(t_imgptr));
-	data->img->img = mlx_new_image(data->mlx, 1920, 1080);
-	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
-	while (i < data->mapWidth)
+	while (i < data->mapHeight)
 	{
-		j = 0;
-		while (j < data->mapHeight)
-		{
-			printf("i : %d | j :%d\n", i, j);
+		j = -1;
+		while (++j < data->mapWidth)
 			print_minimap(data, i, j, data->map[i][j]);
-			j++;
-		}
 		i++;
 	}
 	minimap_player(data);
 	minimap_dir(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
 

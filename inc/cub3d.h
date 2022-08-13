@@ -26,11 +26,11 @@
 
 #include "../libft/libft.h"
 
-#define WIN_W 5120 / 4
-#define WIN_H 2880 / 4
+#define WIN_W 2560
+#define WIN_H 1440
 
 #define SPD	0.05
-#define SMP 10
+#define SMP 5
 
 #define RSP	0.1
 
@@ -38,6 +38,7 @@
 #define WHT 0x00FFFFFF
 #define	GRN 0x0000FF00
 #define BLU 0x000000FF
+#define GRY 0X00969696
 
 typedef struct s_imgptr {
 	char	*path;
@@ -78,6 +79,27 @@ typedef struct s_map {
 	int	h;
 }				t_map;
 
+typedef struct s_raycasting {
+	int		hit;
+	int		side;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	w;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+}				t_raycasting;
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
@@ -99,6 +121,7 @@ typedef struct s_data {
 	float		dirY;
 	float		speed;
 	int			minimapSize;
+	int			activateMinimap;
 
 	char		*no;
 	char		*so;
@@ -113,16 +136,19 @@ typedef struct s_data {
 int		load_map(t_data *data, char *s);
 void	get_pos(t_data *data);
 void	create_intmap(t_data *data);
-void	init_game(t_data *data, char *mapPath);
+void	init_game(t_data *data);
 int		gameplay(int keycode, t_data *data);
-int		raycasting(t_data *data);
+int		displayer(t_data *data);
 void	rendering(t_data *data);
-void	dda(t_data *data);
+void	dda(t_data *data, t_raycasting *rc);
 int		exit_game(t_data *data);
 void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color);
 int		draw_line(t_data *data);
-int		draw_vert(t_data *data, float x, float y, float h);
+int		draw_vert(t_data *data, int x, int y, int y2);
 int		minimap(t_data *data);
+int		calculate_distance(t_data *data, t_raycasting *rc);
+void	projected_distance(t_raycasting *rc);
+
 
 // Utils function
 int		ft_atoi(const char *nptr);

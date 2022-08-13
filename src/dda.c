@@ -11,29 +11,25 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-// Digital Differential Analysis
-/*
-void	dda(t_data *data)
+
+void	dda(t_data *data, t_raycasting *rc)
 {
-	printf("Start dda...\n");
-	while (data->rc.hit == 0)
+	while (rc->hit == 0)
 	{
-  		if (data->rc.sideDistX < data->rc.sideDistY)	//jump to next map square, either in x-direction, or in y-direction
+  		if (rc->sideDistX < rc->sideDistY)	//jump to next map square, either in x-direction, or in y-direction
 		{
-			data->rc.sideDistX += data->rc.deltaDistX;
-			data->rc.mapX += data->rc.stepX;
-			data->rc.side = 0;
+			rc->sideDistX += rc->deltaDistX;
+			rc->mapX += rc->stepX;
+			rc->side = 0;
 		}
 		else
 		{
-			data->rc.sideDistY += data->rc.deltaDistY;
-			data->rc.mapY += data->rc.stepY;
-			data->rc.side = 1;
+			rc->sideDistY += rc->deltaDistY;
+			rc->mapY += rc->stepY;
+			rc->side = 1;
 		}
-//		printf("mapX : %d\nmapY : %d\n", data->rc.mapX, data->rc.mapY);
-		if (data->mapi[data->rc.mapX][data->rc.mapY] > 0)  //Check if ray has hit a wall
-			data->rc.hit = 1;
+		if (data->map[rc->mapY][rc->mapX] > 0)  //Check if ray has hit a wall
+			rc->hit = 1;
 	}
-	printf("hit : %d on mapX : %d & mapY : %d\n", data->rc.hit, data->rc.mapX, data->rc.mapY);
+//	printf("hit : %d on mapX : %d & mapY : %d\n", rc->hit, rc->mapX, rc->mapY);
 }
-*/
