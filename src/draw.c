@@ -20,14 +20,22 @@ void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	draw_vert(t_data *data, int x, int y, int y2)
+int	draw_vert(t_data *data, t_raycasting *rc, int x)
 {
-//	printf("line : %d to %d\n", y, y2);
-    while (y > y2)
+	int	y;
+	int	y2;
+	int	color;
+
+	y = rc->drawStart;
+	y2 = rc->drawEnd;
+	color = GRY;
+	if (rc->side == 1)
+		color = DRY;
+    while (y < y2)
     {
-    //	printf("pixel putted on : %d - %d\n", x, y);
-		ft_mlx_pixel_put(data->img, x, y, BLU);
-		y--;
+//    	printf("pixel putted on : %d - %d\n", x, y);
+		ft_mlx_pixel_put(data->img, x, y, color);
+		y++;
 	}
 //	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
     return (0);

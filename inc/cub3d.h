@@ -26,19 +26,20 @@
 
 #include "../libft/libft.h"
 
-#define WIN_W 2560
-#define WIN_H 1440
+#define WIN_W (1280 * 2)
+#define WIN_H (720 * 2)
 
-#define SPD	0.05
+#define SPD	0.1
 #define SMP 5
 
-#define RSP	0.1
+#define RSP	0.05
 
 #define RED 0x00FF0000
 #define WHT 0x00FFFFFF
 #define	GRN 0x0000FF00
 #define BLU 0x000000FF
-#define GRY 0X00969696
+#define GRY 0X00999896
+#define	DRY 0X006e6d6d
 
 typedef struct s_imgptr {
 	char	*path;
@@ -144,7 +145,7 @@ void	dda(t_data *data, t_raycasting *rc);
 int		exit_game(t_data *data);
 void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color);
 int		draw_line(t_data *data);
-int		draw_vert(t_data *data, int x, int y, int y2);
+int		draw_vert(t_data *data, t_raycasting *rc, int x);
 int		minimap(t_data *data);
 int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);

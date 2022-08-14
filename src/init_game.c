@@ -16,8 +16,8 @@ void	init_data(t_data *data)
 {
 //	t_rc	*rc;
 
-	data->planeX = 0;
-	data->planeY = 0.66;
+	data->planeY = 0;
+	data->planeX = 0.66;
 	data->activateMinimap = 1;
 }
 
@@ -30,9 +30,9 @@ void	init_player(t_data *data)
 	if (data->pDir == 1)
 		data->pDirY = 1;
 	if (data->pDir == 2)
-		data->pDirX = 1;
-	if (data->pDir == 3)
 		data->pDirX = -1;
+	if (data->pDir == 3)
+		data->pDirX = 1;
 }
 
 void	init_game(t_data *data)

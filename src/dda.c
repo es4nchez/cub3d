@@ -16,7 +16,7 @@ void	dda(t_data *data, t_raycasting *rc)
 {
 	while (rc->hit == 0)
 	{
-  		if (rc->sideDistX < rc->sideDistY)	//jump to next map square, either in x-direction, or in y-direction
+  		if (rc->sideDistX < rc->sideDistY)
 		{
 			rc->sideDistX += rc->deltaDistX;
 			rc->mapX += rc->stepX;
@@ -31,5 +31,4 @@ void	dda(t_data *data, t_raycasting *rc)
 		if (data->map[rc->mapY][rc->mapX] > 0)  //Check if ray has hit a wall
 			rc->hit = 1;
 	}
-//	printf("hit : %d on mapX : %d & mapY : %d\n", rc->hit, rc->mapX, rc->mapY);
 }
