@@ -202,8 +202,8 @@ void	remove_gnl_endline(char *str)
 
 void	init_player_pos(t_data *data, int x, int y, char *ori)
 {
-	data->pPosX = x;
-	data->pPosY = y;
+	data->pPosX = x + 0.5;
+	data->pPosY = y + 0.5;
 	if (*ori == 'N')
 		data->pDir = 0;
 	if (*ori == 'S')
