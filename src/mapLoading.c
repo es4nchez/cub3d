@@ -54,8 +54,8 @@ int	load_map(t_data *data, char *s)
 	data->so = NULL;
 	data->ea = NULL;
 	data->we = NULL;
-	data->f = NULL;
-	data->c = NULL;
+	data->f = -1;
+	data->c = -1;
 
 	if (!read_map(data, s))
 	{

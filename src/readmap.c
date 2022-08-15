@@ -91,6 +91,35 @@ int	ft_selftrim(char **s1, const char *set)
 	return (SUCCESS);
 }
 
+
+int	fill_color(int *output, char *colors)
+{
+	char	**ints;
+	int		color;
+
+	ints = ft_split(colors, ',');
+	if (ints == NULL)
+		return (ERROR);
+	if (tab_len(ints) != 3)
+		return (free_tab(ints) * ERROR);
+	*output = 0;
+	color = ft_atoi(ints[0]);
+	if (color < 0 || color >= 256)
+		return (ERROR);
+	*output = (*output << 8) | color;
+	color = ft_atoi(ints[1]);
+	if (color < 0 || color >= 256)
+		return (ERROR);
+	*output = (*output << 8) | color;
+	color = ft_atoi(ints[2]);
+	if (color < 0 || color >= 256)
+		return (ERROR);
+	*output = (*output << 8) | color;
+	free_tab(ints);
+	return (SUCCESS);
+}
+
+
 int	fill_arg(t_data *data, char **splitted)
 {
 	if (ft_strncmp(splitted[0], "NO", 3) == 0 && data->no == NULL)
@@ -102,10 +131,10 @@ int	fill_arg(t_data *data, char **splitted)
 	else if (ft_strncmp(splitted[0], "EA", 3) == 0 && data->ea == NULL)
 		data->ea = ft_strdup(splitted[1]);
 
-	else if (ft_strncmp(splitted[0], "F", 3) == 0 && data->f == NULL)
-		data->f = ft_strdup(splitted[1]);
-	else if (ft_strncmp(splitted[0], "C", 3) == 0 && data->c == NULL)
-		data->c = ft_strdup(splitted[1]);
+	else if (ft_strncmp(splitted[0], "F", 2) == 0 && data->f == -1)
+		fill_color(&data->f, splitted[1]);
+	else if (ft_strncmp(splitted[0], "C", 2) == 0 && data->c == -1)
+		fill_color(&data->c, splitted[1]);
 	else
 		return (0);
 	return (1);
@@ -303,8 +332,8 @@ void	display_infos(t_data *data)
 	printf("so %s\n", data->so);
 	printf("we %s\n", data->we);
 	printf("ea %s\n", data->ea);
-	printf("f %s\n", data->f);
-	printf("c %s\n", data->c);
+	printf("f %d %d %d %d\n", (data->f & 0xFF000000) >> 24, (data->f & 0x00FF0000) >> 16, (data->f & 0x0000FF00) >> 8, (data->f & 0x000000FF));
+	printf("c %d %d %d %d\n", (data->c & 0xFF000000) >> 24, (data->c & 0x00FF0000) >> 16, (data->c & 0x0000FF00) >> 8, (data->c & 0x000000FF));
 	i = 0;
 	while (i < data->mapHeight)
 	{
