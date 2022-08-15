@@ -39,14 +39,13 @@ int	raycasting(t_data *data)
 	t_raycasting	rc;
 
 	x = 0;
-	printf("pPosX : %f | pPosY : %f\n", data->pPosX, data->pPosY);
+//	printf("pPosX : %f | pPosY : %f\n", data->pPosX, data->pPosY);
 	while(x <= WIN_W)
 	{
 		init_raycasting(data, &rc);
 		rc.cameraX = 2 * x / (float)WIN_W - 1.0;
 		rc.rayDirX = data->pDirX + data->planeX * rc.cameraX;
 		rc.rayDirY = data->pDirY + data->planeY * rc.cameraX;
-	//	printf("\nWidth column : %d --> rDirX: %f | rDirY: %f\n", x, rc.rayDirX, rc.rayDirY);
 		if (rc.rayDirX == 0)
 			rc.deltaDistX = INFINITY;
 		else
@@ -55,17 +54,13 @@ int	raycasting(t_data *data)
 			rc.deltaDistY = INFINITY;
 		else
 			rc.deltaDistY = fabs(1 / rc.rayDirY);
-	//	printf("rDeltaDistX: %f | rDeltaDistY: %f\n", rc.deltaDistX, rc.deltaDistY);
 		calculate_distance(data, &rc);
-	//	printf("rSideDistX: %f | rSideDistY: %f\n", rc.sideDistX, rc.sideDistY);
 		dda(data, &rc);
 		projected_distance(&rc);
 		stripe_calculator(&rc);
-//		printf("line : %d - %d\n", rc.drawStart, rc.drawEnd);
 		draw_vert(data, &rc, x);
 		x++;
 	}
-//	exit (0);
 	return (1);
 }
 

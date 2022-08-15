@@ -26,8 +26,10 @@
 
 #include "../libft/libft.h"
 
-#define WIN_W (1280 * 2)
-#define WIN_H (720 * 2)
+//#define WIN_W (1280 * 2)
+#define WIN_W 1280
+//#define WIN_H (720 * 2)
+#define WIN_H 720
 
 #define SPD	0.1
 #define SMP 5
@@ -149,6 +151,8 @@ int		draw_vert(t_data *data, t_raycasting *rc, int x);
 int		minimap(t_data *data);
 int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);
+int		mouse_hook(int keycode, int x, int y, t_data *data);
+int		mouse_move(t_data *data);
 
 
 // Utils function

@@ -33,11 +33,9 @@ int	draw_vert(t_data *data, t_raycasting *rc, int x)
 		color = DRY;
     while (y < y2)
     {
-//    	printf("pixel putted on : %d - %d\n", x, y);
 		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
 	}
-//	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
     return (0);
 }
 
