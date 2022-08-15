@@ -130,8 +130,8 @@ typedef struct s_data {
 	char		*so;
 	char		*we;
 	char		*ea;
-	char		*f;
-	char		*c;
+	int			f;
+	int			c;
 
 }				t_data;
 

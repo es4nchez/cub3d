@@ -7,22 +7,6 @@ char	*get_next_line(int fd);
 #define SUCCESS 1
 #define ERROR 0
 
-typedef struct s_infos {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-
-	char	*f;
-	char	*c;
-
-	int		map_width;
-	int		map_height;
-
-	int		x;
-	int		y;
-	int		ori;
-}	t_infos;
 
 int	concat_tab(char ***tab, char *newstr)
 {
@@ -105,15 +89,15 @@ int	fill_color(int *output, char *colors)
 	*output = 0;
 	color = ft_atoi(ints[0]);
 	if (color < 0 || color >= 256)
-		return (ERROR);
+		return (free_tab(ints) * ERROR);
 	*output = (*output << 8) | color;
 	color = ft_atoi(ints[1]);
 	if (color < 0 || color >= 256)
-		return (ERROR);
+		return (free_tab(ints) * ERROR);
 	*output = (*output << 8) | color;
 	color = ft_atoi(ints[2]);
 	if (color < 0 || color >= 256)
-		return (ERROR);
+		return (free_tab(ints) * ERROR);
 	*output = (*output << 8) | color;
 	free_tab(ints);
 	return (SUCCESS);
@@ -132,9 +116,15 @@ int	fill_arg(t_data *data, char **splitted)
 		data->ea = ft_strdup(splitted[1]);
 
 	else if (ft_strncmp(splitted[0], "F", 2) == 0 && data->f == -1)
-		fill_color(&data->f, splitted[1]);
+	{
+		if (!fill_color(&data->f, splitted[1]))
+			return (-10);
+	}
 	else if (ft_strncmp(splitted[0], "C", 2) == 0 && data->c == -1)
-		fill_color(&data->c, splitted[1]);
+	{
+		if (!fill_color(&data->c, splitted[1]))
+			return (-10);
+	}
 	else
 		return (0);
 	return (1);
