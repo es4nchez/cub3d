@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 	printf("\nInit done.\n\n");
 	mlx_loop_hook(data.mlx, displayer, &data);
 	mlx_hook(data.win, 2, 1L << 0, gameplay, &data);
+	mlx_hook(data.win, 6, 1L << 4, mouse, &data);
 	mlx_hook(data.win, 17, 0, &exit_game, &data);
 	mlx_loop(data.mlx);
 	return (0);

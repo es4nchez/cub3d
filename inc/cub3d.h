@@ -25,6 +25,8 @@
 # include <math.h>
 
 #include "../libft/libft.h"
+#include "../inc/key_macos.h"
+
 
 //#define WIN_W (1280 * 2)
 #define WIN_W 1280
@@ -125,6 +127,7 @@ typedef struct s_data {
 	float		speed;
 	int			minimapSize;
 	int			activateMinimap;
+	int			activate_mouse;
 
 	char		*no;
 	char		*so;
@@ -152,7 +155,8 @@ int		minimap(t_data *data);
 int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
-int		mouse_move(t_data *data);
+//int	mouse_move(t_data *data);
+int		mouse(int x, int y, t_data *data);
 
 
 // Utils function
