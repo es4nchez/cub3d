@@ -28,7 +28,7 @@ void	dda(t_data *data, t_raycasting *rc)
 			rc->mapY += rc->stepY;
 			rc->side = 1;
 		}
-		if (data->map[rc->mapY][rc->mapX] > 0)  //Check if ray has hit a wall
+		if (data->map[rc->mapY][rc->mapX] > 0)
 			rc->hit = 1;
 	}
 }

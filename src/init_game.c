@@ -19,6 +19,7 @@ void	init_data(t_data *data)
 	data->planeY = 0;
 	data->planeX = 0.66;
 	data->activateMinimap = 1;
+	data->activate_mouse = 1;
 }
 
 void	init_player(t_data *data)

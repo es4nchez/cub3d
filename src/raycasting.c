@@ -33,6 +33,46 @@ int	stripe_calculator(t_raycasting *rc)
 	return (1);
 }
 
+int	texture_rendering(t_data *data, t_raycasting *rc)
+{
+//	int texNum = worldMap[mapX][mapY] - 1;
+	if (rc->side == 0)
+		rc->wallX = data->pPosY + rc->perpWallDist * rc->rayDirY;
+	else
+		rc->wallX = data->pPosX + rc->perpWallDist * rc->rayDirX;
+	rc->wallX -= floor((rc->wallX));
+
+	rc->texX = (int)(rc->wallX * (double)(rc->texWidth));
+	if(rc->side == 0 && rc->rayDirX > 0)
+		rc->texX = rc->texWidth - rc->texX - 1;
+	if(rc->side == 1 && rc->rayDirY < 0)
+		rc->texX = rc->texWidth - rc->texX - 1;
+	return (1);
+}
+
+int	texturing(t_data *data, t_raycasting *rc)
+{
+	int		y;
+	int		texY;
+	double	step;
+	double	texPos;
+
+	(void)data;
+	y = rc->drawStart;
+	step = 1.0 * rc->texHeight / rc->lineHeight;
+	texPos = (rc->drawStart - (WIN_H / 2) + (rc->lineHeight / 2)) * step;
+	while(y < rc->drawEnd)
+	{
+		texY = (int)texPos & (rc->texHeight - 1);
+		texPos += step;
+//		Uint32 color = texture[texNum][texHeight * texY + texX];
+//		buffer[y][x] = color;
+		y++;
+	}
+
+	return (1);
+}
+
 int	raycasting(t_data *data)
 {
 	int				x;
@@ -58,6 +98,8 @@ int	raycasting(t_data *data)
 		dda(data, &rc);
 		projected_distance(&rc);
 		stripe_calculator(&rc);
+		texture_rendering(data, &rc);
+//		floorCeiling(data, &rc);
 		draw_vert(data, &rc, x);
 		x++;
 	}
