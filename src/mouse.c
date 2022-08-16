@@ -2,21 +2,19 @@
 
 int	mouse(int x, int y, t_data *data)
 {
-	float		mrsp;
+	float	mrsp;
 	float	oldDirX;
 	float	oldDirY;
 	float	oldPlaneX;
 
-	(void)y;
-	
 	if (data->activate_mouse == 1)
 	{
-		mrsp = ((float)(x - WIN_W / 2)) / 200.0;
+		mrsp = ((float)(x - WIN_W / 2)) / 500.0;
 		oldDirX = data->pDirX;
 		oldDirY = data->pDirY;
 		oldPlaneX = data->planeX;
-		printf("here %f\n", mrsp);
-
+		data->horizon = fmax(0,
+				fmin(WIN_H, data->horizon + (WIN_H / 2 - y) / 1));
 		data->pDirX = data->pDirX * cos(mrsp) - data->pDirY * sin(mrsp);
 		data->pDirY = oldDirX * sin(mrsp) + data->pDirY * cos(mrsp);
 		data->planeX = data->planeX * cos(mrsp) - data->planeY * sin(mrsp);
