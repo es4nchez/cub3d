@@ -42,6 +42,8 @@
 #define BLU 0x000000FF
 #define GRY 0X00999896
 #define	DRY 0X006e6d6d
+#define	WOD 0X00202020
+#define	BRC 0X007d4131
 
 typedef struct s_imgptr {
 	char	*path;
@@ -98,7 +100,11 @@ typedef struct s_raycasting {
 	double	deltaDistX;
 	double	deltaDistY;
 	double	perpWallDist;
+	double	wallX;
+	double	texWidth;
+	int		texX;
 	int		lineHeight;
+	int		texHeight;
 	int		drawStart;
 	int		drawEnd;
 }				t_raycasting;
@@ -109,7 +115,7 @@ typedef struct s_data {
 	int			j;
 	char		*buff;
 	int			**map;
-	t_line		line;
+//	t_line		line;
 	t_imgptr	*img;
 	double		mapWidth;
 	double		mapHeight;
@@ -153,6 +159,7 @@ int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
 int		mouse_move(t_data *data);
+int		floorCeiling(t_data *data, t_raycasting *rc);
 
 
 // Utils function
