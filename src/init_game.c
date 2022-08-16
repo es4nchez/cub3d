@@ -20,6 +20,7 @@ void	init_data(t_data *data)
 	data->planeX = 0.66;
 	data->activateMinimap = 1;
 	data->activate_mouse = 1;
+	data->horizon = WIN_H / 2;
 }
 
 void	init_player(t_data *data)

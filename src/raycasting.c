@@ -21,13 +21,13 @@ int	init_raycasting(t_data *data, t_raycasting *rc)
 	return (1);
 }
 
-int	stripe_calculator(t_raycasting *rc)
+int	stripe_calculator(t_data *data, t_raycasting *rc)
 {
 	rc->lineHeight = (WIN_H / rc->perpWallDist);
-	rc->drawStart = (rc->lineHeight / -2) + (WIN_H / 2);
+	rc->drawStart = (rc->lineHeight / -2) + data->horizon;
 	if(rc->drawStart < 0)
 		rc->drawStart = 0;
-	rc->drawEnd = (rc->lineHeight / 2 + WIN_H / 2);
+	rc->drawEnd = (rc->lineHeight / 2 + data->horizon);
 	if(rc->drawEnd >= WIN_H)
 		rc->drawEnd = WIN_H - 1;
 	return (1);
@@ -60,7 +60,7 @@ int	texturing(t_data *data, t_raycasting *rc)
 	(void)data;
 	y = rc->drawStart;
 	step = 1.0 * rc->texHeight / rc->lineHeight;
-	texPos = (rc->drawStart - (WIN_H / 2) + (rc->lineHeight / 2)) * step;
+	texPos = (rc->drawStart - data->horizon + (rc->lineHeight / 2)) * step;
 	while(y < rc->drawEnd)
 	{
 		texY = (int)texPos & (rc->texHeight - 1);
@@ -97,7 +97,7 @@ int	raycasting(t_data *data)
 		calculate_distance(data, &rc);
 		dda(data, &rc);
 		projected_distance(&rc);
-		stripe_calculator(&rc);
+		stripe_calculator(data, &rc);
 		texture_rendering(data, &rc);
 //		floorCeiling(data, &rc);
 		draw_vert(data, &rc, x);

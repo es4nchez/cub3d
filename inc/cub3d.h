@@ -121,6 +121,7 @@ typedef struct s_data {
 	t_imgptr	*img;
 	double		mapWidth;
 	double		mapHeight;
+	int			horizon;
 	float		pPosX;
 	float		pPosY;
 	float		pDirX;
