@@ -31,9 +31,9 @@ int	gameplay(int keycode, t_data *data)
 		move_lateral_left(data);
 	if (keycode == K_D)
 		move_lateral_right(data);
-	if (keycode == K_AR_L)
+	if (keycode == K_AR_L || keycode == K_Q)
 		move_right(data);
-	if (keycode == K_AR_R)
+	if (keycode == K_AR_R || keycode == K_E)
 		move_left(data);
 	if (keycode == K_M)
 		data->activateMinimap *= -1;
