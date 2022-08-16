@@ -13,8 +13,8 @@ int	mouse(int x, int y, t_data *data)
 		oldDirX = data->pDirX;
 		oldDirY = data->pDirY;
 		oldPlaneX = data->planeX;
-		data->horizon = fmax(0,
-				fmin(WIN_H, data->horizon + (WIN_H / 2 - y) / 1));
+		data->horizon = fmax(-WIN_H,
+				fmin(WIN_H * 2, data->horizon + (WIN_H / 2 - y) / 1));
 		data->pDirX = data->pDirX * cos(mrsp) - data->pDirY * sin(mrsp);
 		data->pDirY = oldDirX * sin(mrsp) + data->pDirY * cos(mrsp);
 		data->planeX = data->planeX * cos(mrsp) - data->planeY * sin(mrsp);
