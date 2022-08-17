@@ -102,6 +102,7 @@ typedef struct s_raycasting {
 	double	deltaDistX;
 	double	deltaDistY;
 	double	perpWallDist;
+
 	double	wallX;
 	double	texWidth;
 	int		texX;
@@ -143,6 +144,10 @@ typedef struct s_data {
 	int			f;
 	int			c;
 
+	char		*sw_addr;
+	t_imgptr	*n_addr;
+	char		*ew_addr;
+	char		*ww_addr;
 }				t_data;
 
 // Project functions
@@ -165,6 +170,8 @@ int		mouse_hook(int keycode, int x, int y, t_data *data);
 int		mouse_move(t_data *data);
 int		floorCeiling(t_data *data, t_raycasting *rc);
 int		mouse(int x, int y, t_data *data);
+int		load_assets(t_data *data);
+int		texture_loading(t_data *data);
 
 // Utils function
 int		ft_atoi(const char *nptr);

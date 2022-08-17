@@ -60,7 +60,7 @@ int	draw_vert(t_data *data, t_raycasting *rc, int x)
 	while (i < y)
 		ft_mlx_pixel_put(data->img, x, i++, data->f);
     while (y < y2)
-		ft_mlx_pixel_put(data->img, x, y++, color);
+		ft_mlx_pixel_put(data->img, x, y++, 3553695);
 	while (y < (WIN_H - 1))
 		ft_mlx_pixel_put(data->img, x, y++, data->c);
     return (0);

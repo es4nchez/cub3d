@@ -43,4 +43,7 @@ void	init_game(t_data *data)
 	init_player(data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "Duckenstein");
+	load_assets(data);
+	texture_loading(data);
+//	exit (1);
 }
