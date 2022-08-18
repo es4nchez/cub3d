@@ -12,6 +12,21 @@
 
 #include "../inc/cub3d.h"
 
+int	args_error(int ac)
+{
+	if (ac == 1)
+	{
+		printf("Please select a map-path in the \"maps\" directory as argument\n");
+		return (0);
+	}
+	if (ac > 2)
+	{
+		printf("Cub3d take only one argument, the path of a map\n");
+		return (0);
+	}
+	return (1);
+}
+
 int	exit_game(t_data *data)
 {
 	(void)data;
@@ -25,6 +40,8 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	printf("\nStarting game...\n\n");
+	if (!args_error(ac))
+		return (0);
 	if (!load_map(&data, av[1]))
 		return (0);
 	init_game(&data);

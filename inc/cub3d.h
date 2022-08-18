@@ -106,6 +106,8 @@ typedef struct s_raycasting {
 	double	wallX;
 	double	texWidth;
 	int		texX;
+	int		texY;
+	double	texPos;
 	int		lineHeight;
 	int		texHeight;
 	int		drawStart;

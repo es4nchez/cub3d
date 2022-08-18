@@ -35,7 +35,6 @@ int	stripe_calculator(t_data *data, t_raycasting *rc)
 
 int	texture_rendering(t_data *data, t_raycasting *rc)
 {
-//	int texNum = worldMap[mapX][mapY] - 1;
 	rc->texWidth = data->n_addr->w;
 	rc->texHeight = data->n_addr->h;
 	if (rc->side == 0)
@@ -58,24 +57,22 @@ int	texture_rendering(t_data *data, t_raycasting *rc)
 int	texturing(t_data *data, t_raycasting *rc, int x)
 {
 	int		y;
-	int		texY;
-	double	step;
-	double	texPos;
 	int		color;
+	double	step;
 
 	y = rc->drawStart;
 	step = 1.0 * rc->texHeight / rc->lineHeight;
-	texPos = (rc->drawStart - data->horizon + (rc->lineHeight / 2)) * step;
+	rc->texPos = (rc->drawStart - data->horizon + (rc->lineHeight / 2)) * step;
 	while(y < rc->drawEnd)
 	{
-		texY = ((int)texPos) & (rc->texHeight - 1);
+		rc->texY = ((int)rc->texPos) & (rc->texHeight - 1);
 //		printf("texPos1 : %f\n", texPos);
-		texPos += step;
+		rc->texPos += step;
 //		printf("texPos2 : %f\n", texPos);
 //		printf("texHeight : %d\ntexWidth: %f\ntexX : %d\ntexY : %d\n", rc->texHeight, rc->texWidth, rc->texX, texY);
 //		printf("\npxs :%d\n", ((rc->texHeight * texY) + rc->texX));
-		if (rc->texHeight * texY + rc->texX < 1024 && (rc->texHeight * texY + rc->texX) >= 0)
-			color = data->n_addr->pxs[(rc->texHeight * texY) + rc->texX];
+		if ((rc->texHeight * rc->texY + rc->texX) >= 0)
+			color = data->n_addr->pxs[(rc->texHeight * rc->texY) + rc->texX];
 //		printf("x : %dy : %d\n", x, y);
 		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
