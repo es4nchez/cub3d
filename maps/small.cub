@@ -1,0 +1,16 @@
+
+NO ./assets/normal_north.xpm
+SO ./assets/normal_south.xpm
+WE ./assets/normal_west.xpm
+EA ./assets/normal_east.xpm
+
+M ./sound/imperial.mp3
+
+F 0,100,0
+C 0,0,100
+
+11111
+10W01
+10001
+10001
+11111

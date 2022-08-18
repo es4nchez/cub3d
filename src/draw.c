@@ -20,44 +20,45 @@ void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	draw_vert(t_data *data, float x, float y, float h)
+int	trgb(int t, int r, int g, int b)
 {
-    while (h > 0)
-    {
-		ft_mlx_pixel_put(data->img, x, y, BLU);
-		y++;
-		h--;
-	}
-//	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
-    return (0);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	draw_line(t_data *data)
+int	select_side(t_raycasting *rc)
 {
-	int			k;
-	t_imgptr	img;
-
-	k = 0;
-	data->line.dx = data->line.x2 - data->line.x1;
-	data->line.dy = data->line.y2 - data->line.y1;
-	if (data->line.dx >= data->line.dy)
-		data->line.step = data->line.dx;
-	else
-		data->line.step = data->line.dy;
-	data->line.xin = data->line.dx / data->line.step;
-	data->line.yin = data->line.dy / data->line.step;
-	data->line.dx = data->line.x1 + 0.5;
-	data->line.dy = data->line.y1 + 0.5;
-	img.img = mlx_new_image(data->mlx, 1920, 1080);
-	img.path = mlx_get_data_addr(img.img, &img.bits, &img.line,
-			&img.end);
-	while (k < data->line.step)
+	if (rc->side == 0)
 	{
-		data->line.dx = data->line.dx + data->line.xin;
-		data->line.dy = data->line.dy + data->line.yin;
-		ft_mlx_pixel_put(&img, data->line.dx, data->line.dy, 0x00FF0000);
-		k++;
+		if (rc->raydirx > 0)
+			return (GRY);
+		else
+			return (GRN);
 	}
-	mlx_put_image_to_window(data->mlx, data->win, img.img, 0, 0);
+	else
+	{
+		if (rc->raydiry > 0)
+			return (BLU);
+		else
+			return (RED);
+	}
+}
+
+int	draw_vert(t_data *data, t_raycasting *rc, int x)
+{
+	int	i;
+	int	y;
+	int	y2;
+	int	color;
+
+	i = 0;
+	y = rc->drawstart;
+	y2 = rc->drawend;
+	color = select_side(rc);
+	while (i < y)
+		ft_mlx_pixel_put(data->img, x, i++, data->f);
+	while (y < y2)
+		ft_mlx_pixel_put(data->img, x, y++, 3553695);
+	while (y < (WIN_H - 1))
+		ft_mlx_pixel_put(data->img, x, y++, data->c);
 	return (0);
 }

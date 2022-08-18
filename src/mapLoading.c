@@ -22,10 +22,10 @@ void	get_pos(t_data *data)
 	i = 0;
 	y = 0;
 	control = 0;
-	while (y <= data->mapHeight && data->buff[i])
+	while (y <= data->mapheight && data->buff[i])
 	{
 		x = 0;
-		while (x <= data->mapWidth && data->buff[i])
+		while (x <= data->mapwidth && data->buff[i])
 		{
 			if (data->buff[i] == 'P')
 			{
@@ -54,14 +54,14 @@ int	load_map(t_data *data, char *s)
 	data->so = NULL;
 	data->ea = NULL;
 	data->we = NULL;
-	data->f = NULL;
-	data->c = NULL;
+	data->f = -1;
+	data->c = -1;
 
 	if (!read_map(data, s))
 	{
 		printf("PARSE ERROR\n");
 		return (0);
 	}
-	printf("\nx : %f\ny : %f\n", data->mapWidth, data->mapHeight);
+	printf("\nx : %f\ny : %f\n", data->mapwidth, data->mapheight);
 	return (1);
 }

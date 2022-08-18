@@ -14,15 +14,34 @@
 
 int	move_lateral_left(t_data *data)
 {
-	data->pPosX += data->pDirY * SPD;
-	data->pPosY -= data->pDirX * SPD;
+	float	oldposx;
+	float	oldposy;
 
-	return (0);
+	oldposx = data->pposx;
+	oldposy = data->pposy;
+	data->pposx += data->pdiry * SPD;
+	data->pposy -= data->pdirx * SPD;
+	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1)
+	{
+		data->pposx = oldposx;
+		data->pposy = oldposy;
+	}
+	return (1);
 }
 
 int	move_lateral_right(t_data *data)
 {
-	data->pPosX -= data->pDirY * SPD;
-	data->pPosY += data->pDirX * SPD;
-	return (0);
+	float	oldposx;
+	float	oldposy;
+
+	oldposx = data->pposx;
+	oldposy = data->pposy;
+	data->pposx -= data->pdiry * SPD;
+	data->pposy += data->pdirx * SPD;
+	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1)
+	{
+		data->pposx = oldposx;
+		data->pposy = oldposy;
+	}
+	return (1);
 }

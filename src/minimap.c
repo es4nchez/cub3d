@@ -14,14 +14,14 @@
 
 int	draw_sqr_minimap(t_data *data, t_map minimap, int color)
 {
-	int x;
+	int	x;
 	int	y;
 
 	x = minimap.x * SMP;
 	while (x < ((minimap.x + 1) * SMP))
 	{
 		y = minimap.y * SMP;
-		while(y < ((minimap.y + 1) * SMP))
+		while (y < ((minimap.y + 1) * SMP))
 		{
 			ft_mlx_pixel_put(data->img, y, x, color);
 			y++;
@@ -33,28 +33,37 @@ int	draw_sqr_minimap(t_data *data, t_map minimap, int color)
 
 int	minimap_player(t_data *data)
 {
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP) + 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP) - 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP) + 1,GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP) - 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) + 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP), (data->pposy * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		+ 1, (data->pposy * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		+ 1, (data->pposy * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		+ 1, (data->pposy * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		- 1, (data->pposy * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		- 1, (data->pposy * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		- 1, (data->pposy * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP), (data->pposy * SMP)
+		+ 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP), (data->pposy * SMP)
+		- 1, GRN);
 	return (0);
 }
 
 int	print_minimap(t_data *data, int x, int y, int nb)
 {
 	t_map	minimap;
+
 	minimap.h = SMP;
 	minimap.x = x;
 	minimap.y = y;
-	if (nb == 0 )
+	if (nb == 0)
 		draw_sqr_minimap(data, minimap, WHT);
 	if (nb == 1)
-		draw_sqr_minimap(data, minimap, RED);
+		draw_sqr_minimap(data, minimap, GRY);
 	if (nb == 4)
 		draw_sqr_minimap(data, minimap, WHT);
 	return (0);
@@ -71,14 +80,13 @@ int	minimap_dir(t_data *data)
 	s = 0.1;
 	while (++i <= 8)
 	{
-		x = data->pPosX + data->pDirX * s;
-		y = data->pPosY + data->pDirY * s;
+		x = data->pposx + data->pdirx * s;
+		y = data->pposy + data->pdiry * s;
 		ft_mlx_pixel_put(data->img, (x * SMP), (y * SMP), BLU);
 		s += 0.2;
 	}
 	return (0);
 }
-
 
 int	minimap(t_data *data)
 {
@@ -86,23 +94,14 @@ int	minimap(t_data *data)
 	int	j;
 
 	i = 0;
-	data->img = malloc(sizeof(t_imgptr));
-	data->img->img = mlx_new_image(data->mlx, 1920, 1080);
-	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
-	while (i < data->mapWidth)
+	while (i < data->mapheight)
 	{
-		j = 0;
-		while (j < data->mapHeight)
-		{
-			printf("i : %d | j :%d\n", i, j);
+		j = -1;
+		while (++j < data->mapwidth)
 			print_minimap(data, i, j, data->map[i][j]);
-			j++;
-		}
 		i++;
 	}
 	minimap_player(data);
 	minimap_dir(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
-

@@ -21,20 +21,23 @@ int	move_lateral_left(t_data *data);
 
 int	gameplay(int keycode, t_data *data)
 {
-	if (keycode == 53)
+	if (keycode == K_ESCAPE)
 		exit_game(data);
-	if (keycode == 13)
+	if (keycode == K_W)
 		move_front(data);
-	if (keycode == 1)
+	if (keycode == K_S)
 		move_back(data);
-	if (keycode == 0)
+	if (keycode == K_A)
 		move_lateral_left(data);
-	if (keycode == 2)
+	if (keycode == K_D)
 		move_lateral_right(data);
-	if (keycode == 123)
+	if (keycode == K_AR_L || keycode == K_Q)
 		move_right(data);
-	if (keycode == 124)
+	if (keycode == K_AR_R || keycode == K_E)
 		move_left(data);
-//	printf("Player pos : %f - %f  dir : %d | dirx : %f diry : %f\n", data->pPosX, data->pPosY, data->pDir, data->pDirX, data->pDirY);
+	if (keycode == K_M)
+		data->activate_minimap *= -1;
+	if (keycode == K_P)
+		data->activate_mouse *= -1;
 	return (0);
 }
