@@ -16,19 +16,19 @@ void	dda(t_data *data, t_raycasting *rc)
 {
 	while (rc->hit == 0)
 	{
-		if (rc->sideDistX < rc->sideDistY)
+		if (rc->sidedistx < rc->sidedisty)
 		{
-			rc->sideDistX += rc->deltaDistX;
-			rc->mapX += rc->stepX;
+			rc->sidedistx += rc->deltadistx;
+			rc->mapx += rc->step_x;
 			rc->side = 0;
 		}
 		else
 		{
-			rc->sideDistY += rc->deltaDistY;
-			rc->mapY += rc->stepY;
+			rc->sidedisty += rc->deltadisty;
+			rc->mapy += rc->step_y;
 			rc->side = 1;
 		}
-		if (data->map[rc->mapY][rc->mapX] > 0)
+		if (data->map[rc->mapy][rc->mapx] > 0)
 			rc->hit = 1;
 	}
 }

@@ -221,16 +221,16 @@ void	remove_gnl_endline(char *str)
 
 void	init_player_pos(t_data *data, int x, int y, char *ori)
 {
-	data->pPosX = x + 0.5;
-	data->pPosY = y + 0.5;
+	data->pposx = x + 0.5;
+	data->pposy = y + 0.5;
 	if (*ori == 'N')
-		data->pDir = 0;
+		data->pdir = 0;
 	if (*ori == 'S')
-		data->pDir = 1;
+		data->pdir = 1;
 	if (*ori == 'W')
-		data->pDir = 2;
+		data->pdir = 2;
 	if (*ori == 'E')
-		data->pDir = 3;
+		data->pdir = 3;
 
 	*ori = '0';
 }
@@ -240,7 +240,7 @@ int	check_around(t_data *data, char **raw, int x, int y)
 	if (x <= 0 || x >= (int)ft_strlen(raw[y]) - 1)
 		return (ERROR);
 
-	if (y <= 0 || y >= data->mapHeight)
+	if (y <= 0 || y >= data->mapheight)
 		return (ERROR);
 
 	if (raw[y][x - 1] == ' ' || raw[y][x + 1] == ' ')
@@ -259,19 +259,19 @@ int	check_map(char **raw, t_data *data)
 	int	len;
 	int	i;
 
-	data->mapWidth = 0;
+	data->mapwidth = 0;
 	len = 0;
 	while (raw != NULL && raw[len] != NULL)
 	{
 		i = 0;
 
 		remove_gnl_endline(raw[len]);
-		if ((int)ft_strlen(raw[len]) > data->mapWidth)
-			data->mapWidth = (int)ft_strlen(raw[len]);
+		if ((int)ft_strlen(raw[len]) > data->mapwidth)
+			data->mapwidth = (int)ft_strlen(raw[len]);
 
 		while (i < (int)ft_strlen(raw[len]))
 		{
-			if (ft_strchr("NSWE", raw[len][i]) != NULL && data->pPosX == -1)
+			if (ft_strchr("NSWE", raw[len][i]) != NULL && data->pposx == -1)
 				init_player_pos(data, i, len, &raw[len][i]);
 			else if (raw[len][i] == '0' && !check_around(data, raw, i, len))
 				return (ERROR);
@@ -291,16 +291,16 @@ int	convert_map(char **raw, t_data *data)
 	int	j;
 
 	i = 0;
-	data->map = malloc(sizeof(int *) * data->mapHeight);
+	data->map = malloc(sizeof(int *) * data->mapheight);
 	if (data->map == NULL)
 		return (ERROR);
-	while (i < data->mapHeight)
+	while (i < data->mapheight)
 	{
-		data->map[i] = malloc(sizeof(int) * data->mapWidth);
+		data->map[i] = malloc(sizeof(int) * data->mapwidth);
 		if (data->map[i] == NULL)
 			return (ERROR);
 		j = 0;
-		while (j < data->mapWidth)
+		while (j < data->mapwidth)
 		{
 			data->map[i][j] = 1;
 			if (j < (int)ft_strlen(raw[i]) && raw[i][j] == '0')
@@ -325,10 +325,10 @@ void	display_infos(t_data *data)
 	printf("f %d %d %d %d\n", (data->f & 0xFF000000) >> 24, (data->f & 0x00FF0000) >> 16, (data->f & 0x0000FF00) >> 8, (data->f & 0x000000FF));
 	printf("c %d %d %d %d\n", (data->c & 0xFF000000) >> 24, (data->c & 0x00FF0000) >> 16, (data->c & 0x0000FF00) >> 8, (data->c & 0x000000FF));
 	i = 0;
-	while (i < data->mapHeight)
+	while (i < data->mapheight)
 	{
 		j = 0;
-		while (j < data->mapWidth)
+		while (j < data->mapwidth)
 		{
 			printf("%d", data->map[i][j]);
 			j++;
@@ -346,7 +346,7 @@ int	read_map(t_data *data, char *filename)
 
 	raw = NULL;
 //	ft_memset(&infos, 0, sizeof(t_infos));
-	data->pPosX = -1;
+	data->pposx = -1;
 
 	fd = open_filename(filename);
 
@@ -361,7 +361,7 @@ int	read_map(t_data *data, char *filename)
 
 	close(fd);
 
-	data->mapHeight = tab_len(raw);
+	data->mapheight = tab_len(raw);
 
 	if (!check_map(raw, data))
 		return (ERROR);

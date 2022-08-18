@@ -14,71 +14,71 @@
 
 int	move_front(t_data *data)
 {
-	float	oldPosX;
-	float	oldPosY;
+	float	oldposx;
+	float	oldposy;
 
-	oldPosX = data->pPosX;
-	oldPosY = data->pPosY;
-	data->pPosX += data->pDirX * SPD;
-	data->pPosY += data->pDirY * SPD;
-	if (data->map[(int)(data->pPosY)][(int)(data->pPosX)] == 1)
+	oldposx = data->pposx;
+	oldposy = data->pposy;
+	data->pposx += data->pdirx * SPD;
+	data->pposy += data->pdiry * SPD;
+	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1)
 	{
-		data->pPosX = oldPosX;
-		data->pPosY = oldPosY;
+		data->pposx = oldposx;
+		data->pposy = oldposy;
 	}
 	return (1);
 }
 
 int	move_back(t_data *data)
 {
-	float	oldPosX;
-	float	oldPosY;
+	float	oldposx;
+	float	oldposy;
 
-	oldPosX = data->pPosX;
-	oldPosY = data->pPosY;
-	data->pPosX -= data->pDirX * SPD;
-	data->pPosY -= data->pDirY * SPD;
-	if (data->map[(int)(data->pPosY)][(int)(data->pPosX)] == 1)
+	oldposx = data->pposx;
+	oldposy = data->pposy;
+	data->pposx -= data->pdirx * SPD;
+	data->pposy -= data->pdiry * SPD;
+	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1)
 	{
-		data->pPosX = oldPosX;
-		data->pPosY = oldPosY;
+		data->pposx = oldposx;
+		data->pposy = oldposy;
 	}
 	return (1);
 }
 
 int	move_left(t_data *data)
 {
-	float	oldDirX;
-	float	oldDirY;
-	float	oldPlaneX;
+	float	olddirx;
+	float	olddiry;
+	float	oldplanex;
 
-	data->pDir += 355;
-	data->pDir %= 360;
-	oldDirX = data->pDirX;
-	oldDirY = data->pDirY;
-	oldPlaneX = data->planeX;
-	data->pDirX = data->pDirX * cos(RSP) - data->pDirY * sin(RSP);
-	data->pDirY = oldDirX * sin(RSP) + data->pDirY * cos(RSP);
-	data->planeX = data->planeX * cos(RSP) - data->planeY * sin(RSP);
-	data->planeY = oldPlaneX * sin(RSP) + data->planeY * cos(RSP);
+	data->pdir += 355;
+	data->pdir %= 360;
+	olddirx = data->pdirx;
+	olddiry = data->pdiry;
+	oldplanex = data->planex;
+	data->pdirx = data->pdirx * cos(RSP) - data->pdiry * sin(RSP);
+	data->pdiry = olddirx * sin(RSP) + data->pdiry * cos(RSP);
+	data->planex = data->planex * cos(RSP) - data->planey * sin(RSP);
+	data->planey = oldplanex * sin(RSP) + data->planey * cos(RSP);
 	return (0);
 }
 
 int	move_right(t_data *data)
 {
-	float	oldDirX;
-	float	oldDirY;
-	float	oldPlaneX;
+	float	olddirx;
+	float	olddiry;
+	float	oldplanex;
 
-	data->pDir += 5;
-	data->pDir %= 360;
+	data->pdir += 5;
+	data->pdir %= 360;
 
-	oldDirX = data->pDirX;
-	oldDirY = data->pDirY;
-	oldPlaneX = data->planeX;
-	data->pDirX = data->pDirX * cos(-RSP) - data->pDirY * sin(-RSP);
-	data->pDirY = oldDirX * sin(-RSP) + data->pDirY * cos(-RSP);
-	data->planeX = data->planeX * cos(-RSP) - data->planeY * sin(-RSP);
-	data->planeY = oldPlaneX * sin(-RSP) + data->planeY * cos(-RSP);
+	olddirx = data->pdirx;
+	olddiry = data->pdiry;
+	oldplanex = data->planex;
+	data->pdirx = data->pdirx * cos(-RSP) - data->pdiry * sin(-RSP);
+	data->pdiry = olddirx * sin(-RSP) + data->pdiry * cos(-RSP);
+	data->planex = data->planex * cos(-RSP) - data->planey * sin(-RSP);
+	data->planey = oldplanex * sin(-RSP) + data->planey * cos(-RSP);
 	return (0);
 }

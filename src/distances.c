@@ -14,25 +14,25 @@
 
 int	calculate_distance(t_data *data, t_raycasting *rc)
 {
-	if (rc->rayDirX < 0)
+	if (rc->raydirx < 0)
 	{
-		rc->stepX = -1;
-		rc->sideDistX = (data->pPosX - (float)rc->mapX) * rc->deltaDistX;
+		rc->step_x = -1;
+		rc->sidedistx = (data->pposx - (float)rc->mapx) * rc->deltadistx;
 	}
 	else
 	{
-		rc->stepX = 1;
-		rc->sideDistX = ((float)rc->mapX + 1.0 - data->pPosX) * rc->deltaDistX;
+		rc->step_x = 1;
+		rc->sidedistx = ((float)rc->mapx + 1.0 - data->pposx) * rc->deltadistx;
 	}
-	if (rc->rayDirY < 0)
+	if (rc->raydiry < 0)
 	{
-		rc->stepY = -1;
-		rc->sideDistY = (data->pPosY - (float)rc->mapY) * rc->deltaDistY;
+		rc->step_y = -1;
+		rc->sidedisty = (data->pposy - (float)rc->mapy) * rc->deltadisty;
 	}
 	else
 	{
-		rc->stepY = 1;
-		rc->sideDistY = ((float)rc->mapY + 1.0 - data->pPosY) * rc->deltaDistY;
+		rc->step_y = 1;
+		rc->sidedisty = ((float)rc->mapy + 1.0 - data->pposy) * rc->deltadisty;
 	}
 	return (1);
 }
@@ -40,7 +40,7 @@ int	calculate_distance(t_data *data, t_raycasting *rc)
 void	projected_distance(t_raycasting *rc)
 {
 	if (rc->side == 0)
-		rc->perpWallDist = (rc->sideDistX - rc->deltaDistX);
+		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
 	else
-		rc->perpWallDist = (rc->sideDistY - rc->deltaDistY);
+		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
 }

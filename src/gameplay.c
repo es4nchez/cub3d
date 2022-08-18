@@ -36,7 +36,7 @@ int	gameplay(int keycode, t_data *data)
 	if (keycode == K_AR_R || keycode == K_E)
 		move_left(data);
 	if (keycode == K_M)
-		data->activateMinimap *= -1;
+		data->activate_minimap *= -1;
 	if (keycode == K_P)
 		data->activate_mouse *= -1;
 	return (0);

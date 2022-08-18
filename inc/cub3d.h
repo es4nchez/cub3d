@@ -24,28 +24,27 @@
 # include <string.h>
 # include <math.h>
 
-#include "../libft/libft.h"
-#include "../inc/key_macos.h"
+# include "../libft/libft.h"
+# include "../inc/key_macos.h"
 
+//# define WIN_W (1280 * 2)
+# define WIN_W 1280
+//# define WIN_H (720 * 2)
+# define WIN_H 720
 
-//#define WIN_W (1280 * 2)
-#define WIN_W 1280
-//#define WIN_H (720 * 2)
-#define WIN_H 720
+# define SPD	0.1
+# define SMP 5
 
-#define SPD	0.1
-#define SMP 5
+# define RSP	0.05
 
-#define RSP	0.05
-
-#define RED 0x00FF0000
-#define WHT 0x00FFFFFF
-#define	GRN 0x0000FF00
-#define BLU 0x000000FF
-#define GRY 0X00999896
-#define	DRY 0X006e6d6d
-#define	WOD 0X00202020
-#define	BRC 0X007d4131
+# define RED 0x00FF0000
+# define WHT 0x00FFFFFF
+# define GRN 0x0000FF00
+# define BLU 0x000000FF
+# define GRY 0X00999896
+# define DRY 0X006e6d6d
+# define WOD 0X00202020
+# define BRC 0X007d4131
 
 typedef struct s_imgptr {
 	char	*path;
@@ -66,18 +65,17 @@ typedef struct s_img {
 	int		img_height;
 }				t_img;
 
-
 typedef struct s_line {
 	float	x1;
 	float	x2;
 	float	y1;
 	float	y2;
 	float	i;
-	float dx;
-	float dy;
-	float step;
-	float xin;
-	float yin;
+	float	dx;
+	float	dy;
+	float	step;
+	float	xin;
+	float	yin;
 }				t_line;
 
 typedef struct s_map {
@@ -89,29 +87,28 @@ typedef struct s_map {
 typedef struct s_raycasting {
 	int		hit;
 	int		side;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
+	int		mapx;
+	int		mapy;
+	int		step_x;
+	int		step_y;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
 	double	w;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-
-	double	wallX;
-	double	texWidth;
-	int		texX;
-	int		texY;
-	double	texPos;
-	int		lineHeight;
-	int		texHeight;
-	int		drawStart;
-	int		drawEnd;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	double	wallx;
+	double	texwidth;
+	int		texx;
+	int		texy;
+	double	texpos;
+	int		lineheight;
+	int		texheight;
+	int		drawstart;
+	int		drawend;
 }				t_raycasting;
 
 typedef struct s_data {
@@ -120,32 +117,29 @@ typedef struct s_data {
 	int			j;
 	char		*buff;
 	int			**map;
-//	t_line		line;
 	t_imgptr	*img;
-	double		mapWidth;
-	double		mapHeight;
+	double		mapwidth;
+	double		mapheight;
 	int			horizon;
-	float		pPosX;
-	float		pPosY;
-	float		pDirX;
-	float		pDirY;
-	int			pDir;
-	float		planeX;
-	float		planeY;
-	float		dirX;
-	float		dirY;
+	float		pposx;
+	float		pposy;
+	float		pdirx;
+	float		pdiry;
+	int			pdir;
+	float		planex;
+	float		planey;
+	float		dirx;
+	float		diry;
 	float		speed;
-	int			minimapSize;
-	int			activateMinimap;
+	int			minimap_size;
+	int			activate_minimap;
 	int			activate_mouse;
-
 	char		*no;
 	char		*so;
 	char		*we;
 	char		*ea;
 	int			f;
 	int			c;
-
 	char		*sw_addr;
 	t_imgptr	*n_addr;
 	char		*ew_addr;

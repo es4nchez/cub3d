@@ -14,25 +14,25 @@
 
 void	init_data(t_data *data)
 {
-	data->planeY = 0;
-	data->planeX = 0.66;
-	data->activateMinimap = 1;
+	data->planey = 0;
+	data->planex = 0.66;
+	data->activate_minimap = 1;
 	data->activate_mouse = 1;
 	data->horizon = WIN_H / 2;
 }
 
 void	init_player(t_data *data)
 {
-	data->pDirX = 0;
-	data->pDirY = 0;
-	if (data->pDir == 0)
-		data->pDirY = -1;
-	if (data->pDir == 1)
-		data->pDirY = 1;
-	if (data->pDir == 2)
-		data->pDirX = -1;
-	if (data->pDir == 3)
-		data->pDirX = 1;
+	data->pdirx = 0;
+	data->pdiry = 0;
+	if (data->pdir == 0)
+		data->pdiry = -1;
+	if (data->pdir == 1)
+		data->pdiry = 1;
+	if (data->pdir == 2)
+		data->pdirx = -1;
+	if (data->pdir == 3)
+		data->pdirx = 1;
 }
 
 void	init_game(t_data *data)
@@ -40,7 +40,7 @@ void	init_game(t_data *data)
 	init_data(data);
 	init_player(data);
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "Duckenstein");
+	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "duckenstein");
 	load_assets(data);
 	texture_loading(data);
 }

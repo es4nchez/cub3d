@@ -29,14 +29,14 @@ int	select_side(t_raycasting *rc)
 {
 	if (rc->side == 0)
 	{
-		if (rc->rayDirX > 0)
+		if (rc->raydirx > 0)
 			return (GRY);
 		else
 			return (GRN);
 	}
 	else
 	{
-		if (rc->rayDirY > 0)
+		if (rc->raydiry > 0)
 			return (BLU);
 		else
 			return (RED);
@@ -51,8 +51,8 @@ int	draw_vert(t_data *data, t_raycasting *rc, int x)
 	int	color;
 
 	i = 0;
-	y = rc->drawStart;
-	y2 = rc->drawEnd;
+	y = rc->drawstart;
+	y2 = rc->drawend;
 	color = select_side(rc);
 	while (i < y)
 		ft_mlx_pixel_put(data->img, x, i++, data->f);

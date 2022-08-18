@@ -33,22 +33,22 @@ int	draw_sqr_minimap(t_data *data, t_map minimap, int color)
 
 int	minimap_player(t_data *data)
 {
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
-		+ 1, (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
-		+ 1, (data->pPosY * SMP) + 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
-		+ 1, (data->pPosY * SMP) - 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
-		- 1, (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
-		- 1, (data->pPosY * SMP) + 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
-		- 1, (data->pPosY * SMP) - 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP)
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP), (data->pposy * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		+ 1, (data->pposy * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		+ 1, (data->pposy * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		+ 1, (data->pposy * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		- 1, (data->pposy * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		- 1, (data->pposy * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP)
+		- 1, (data->pposy * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP), (data->pposy * SMP)
 		+ 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP)
+	ft_mlx_pixel_put(data->img, (data->pposx * SMP), (data->pposy * SMP)
 		- 1, GRN);
 	return (0);
 }
@@ -80,8 +80,8 @@ int	minimap_dir(t_data *data)
 	s = 0.1;
 	while (++i <= 8)
 	{
-		x = data->pPosX + data->pDirX * s;
-		y = data->pPosY + data->pDirY * s;
+		x = data->pposx + data->pdirx * s;
+		y = data->pposy + data->pdiry * s;
 		ft_mlx_pixel_put(data->img, (x * SMP), (y * SMP), BLU);
 		s += 0.2;
 	}
@@ -94,10 +94,10 @@ int	minimap(t_data *data)
 	int	j;
 
 	i = 0;
-	while (i < data->mapHeight)
+	while (i < data->mapheight)
 	{
 		j = -1;
-		while (++j < data->mapWidth)
+		while (++j < data->mapwidth)
 			print_minimap(data, i, j, data->map[i][j]);
 		i++;
 	}

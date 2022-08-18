@@ -15,42 +15,42 @@
 int	init_raycasting(t_data *data, t_raycasting *rc)
 {
 	rc->w = -1;
-	rc->mapX = data->pPosX;
-	rc->mapY = data->pPosY;
+	rc->mapx = data->pposx;
+	rc->mapy = data->pposy;
 	rc->hit = 0;
 	return (1);
 }
 
 int	stripe_calculator(t_data *data, t_raycasting *rc)
 {
-	rc->lineHeight = (WIN_H / rc->perpWallDist);
-	rc->drawStart = (rc->lineHeight / -2) + data->horizon;
-	if(rc->drawStart < 0)
-		rc->drawStart = 0;
-	rc->drawEnd = (rc->lineHeight / 2 + data->horizon);
-	if(rc->drawEnd >= WIN_H)
-		rc->drawEnd = WIN_H - 1;
+	rc->lineheight = (WIN_H / rc->perpwalldist);
+	rc->drawstart = (rc->lineheight / -2) + data->horizon;
+	if(rc->drawstart < 0)
+		rc->drawstart = 0;
+	rc->drawend = (rc->lineheight / 2 + data->horizon);
+	if(rc->drawend >= WIN_H)
+		rc->drawend = WIN_H - 1;
 	return (1);
 }
 
 int	texture_rendering(t_data *data, t_raycasting *rc)
 {
-	rc->texWidth = data->n_addr->w;
-	rc->texHeight = data->n_addr->h;
+	rc->texwidth = data->n_addr->w;
+	rc->texheight = data->n_addr->h;
 	if (rc->side == 0)
-		rc->wallX = data->pPosY + rc->perpWallDist * rc->rayDirY;
+		rc->wallx = data->pposy + rc->perpwalldist * rc->raydiry;
 	else
-		rc->wallX = data->pPosX + rc->perpWallDist * rc->rayDirX;
-//	printf("wallX : %f\n", rc->wallX);
-//	rc->wallX += 1;
+		rc->wallx = data->pposx + rc->perpwalldist * rc->raydirx;
+//	printf("wallx : %f\n", rc->wallx);
+//	rc->wallx += 1;
 
-	rc->texX = (int)(rc->wallX * rc->texWidth);
-//	printf("t1 texX : %d\n", rc->texX);
-	if(rc->side == 0 && rc->rayDirX > 0)
-		rc->texX = ((rc->texWidth * (rc->texHeight - 1)) - rc->texX - 1);
-	if(rc->side == 1 && rc->rayDirY < 0)
-		rc->texX = ((rc->texWidth * (rc->texHeight - 1)) - rc->texX - 1);
-//	printf("t2 texX : %d\n", abs(rc->texX));
+	rc->texx = (int)(rc->wallx * rc->texwidth);
+//	printf("t1 texx : %d\n", rc->texx);
+	if(rc->side == 0 && rc->raydirx > 0)
+		rc->texx = ((rc->texwidth * (rc->texheight - 1)) - rc->texx - 1);
+	if(rc->side == 1 && rc->raydiry < 0)
+		rc->texx = ((rc->texwidth * (rc->texheight - 1)) - rc->texx - 1);
+//	printf("t2 texx : %d\n", abs(rc->texx));
 	return (1);
 }
 
@@ -60,19 +60,19 @@ int	texturing(t_data *data, t_raycasting *rc, int x)
 	int		color;
 	double	step;
 
-	y = rc->drawStart;
-	step = 1.0 * rc->texHeight / rc->lineHeight;
-	rc->texPos = (rc->drawStart - data->horizon + (rc->lineHeight / 2)) * step;
-	while(y < rc->drawEnd)
+	y = rc->drawstart;
+	step = 1.0 * rc->texheight / rc->lineheight;
+	rc->texpos = (rc->drawstart - data->horizon + (rc->lineheight / 2)) * step;
+	while(y < rc->drawend)
 	{
-		rc->texY = ((int)rc->texPos) & (rc->texHeight - 1);
-//		printf("texPos1 : %f\n", texPos);
-		rc->texPos += step;
-//		printf("texPos2 : %f\n", texPos);
-//		printf("texHeight : %d\ntexWidth: %f\ntexX : %d\ntexY : %d\n", rc->texHeight, rc->texWidth, rc->texX, texY);
-//		printf("\npxs :%d\n", ((rc->texHeight * texY) + rc->texX));
-		if ((rc->texHeight * rc->texY + rc->texX) >= 0)
-			color = data->n_addr->pxs[(rc->texHeight * rc->texY) + rc->texX];
+		rc->texy = ((int)rc->texpos) & (rc->texheight - 1);
+//		printf("texpos1 : %f\n", texpos);
+		rc->texpos += step;
+//		printf("texpos2 : %f\n", texpos);
+//		printf("texheight : %d\ntexwidth: %f\ntexx : %d\ntexy : %d\n", rc->texheight, rc->texwidth, rc->texx, texy);
+//		printf("\npxs :%d\n", ((rc->texheight * texy) + rc->texx));
+		if ((rc->texheight * rc->texy + rc->texx) >= 0)
+			color = data->n_addr->pxs[(rc->texheight * rc->texy) + rc->texx];
 //		printf("x : %dy : %d\n", x, y);
 		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
@@ -87,21 +87,21 @@ int	raycasting(t_data *data)
 	t_raycasting	rc;
 
 	x = 0;
-//	printf("pPosX : %f | pPosY : %f\n", data->pPosX, data->pPosY);
+//	printf("pposx : %f | pposy : %f\n", data->pposx, data->pposy);
 	while(x <= WIN_W)
 	{
 		init_raycasting(data, &rc);
-		rc.cameraX = 2 * x / (float)WIN_W - 1.0;
-		rc.rayDirX = data->pDirX + data->planeX * rc.cameraX;
-		rc.rayDirY = data->pDirY + data->planeY * rc.cameraX;
-		if (rc.rayDirX == 0)
-			rc.deltaDistX = INFINITY;
+		rc.camerax = 2 * x / (float)WIN_W - 1.0;
+		rc.raydirx = data->pdirx + data->planex * rc.camerax;
+		rc.raydiry = data->pdiry + data->planey * rc.camerax;
+		if (rc.raydirx == 0)
+			rc.deltadistx = INFINITY;
 		else
-			rc.deltaDistX = fabs(1 / rc.rayDirX);
-		if (rc.rayDirY == 0)
-			rc.deltaDistY = INFINITY;
+			rc.deltadistx = fabs(1 / rc.raydirx);
+		if (rc.raydiry == 0)
+			rc.deltadisty = INFINITY;
 		else
-			rc.deltaDistY = fabs(1 / rc.rayDirY);
+			rc.deltadisty = fabs(1 / rc.raydiry);
 		calculate_distance(data, &rc);
 		dda(data, &rc);
 		projected_distance(&rc);
@@ -122,7 +122,7 @@ int	displayer(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
 	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
 	raycasting(data);
-	if (data->activateMinimap > 0)
+	if (data->activate_minimap > 0)
 		minimap(data);
  	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (1);
