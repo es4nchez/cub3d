@@ -14,14 +14,14 @@
 
 int	draw_sqr_minimap(t_data *data, t_map minimap, int color)
 {
-	int x;
+	int	x;
 	int	y;
 
 	x = minimap.x * SMP;
 	while (x < ((minimap.x + 1) * SMP))
 	{
 		y = minimap.y * SMP;
-		while(y < ((minimap.y + 1) * SMP))
+		while (y < ((minimap.y + 1) * SMP))
 		{
 			ft_mlx_pixel_put(data->img, y, x, color);
 			y++;
@@ -34,24 +34,33 @@ int	draw_sqr_minimap(t_data *data, t_map minimap, int color)
 int	minimap_player(t_data *data)
 {
 	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP) + 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) + 1, (data->pPosY * SMP) - 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP), GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP) + 1,GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP) - 1, (data->pPosY * SMP) - 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) + 1, GRN);
-	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
+		+ 1, (data->pPosY * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
+		+ 1, (data->pPosY * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
+		+ 1, (data->pPosY * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
+		- 1, (data->pPosY * SMP), GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
+		- 1, (data->pPosY * SMP) + 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP)
+		- 1, (data->pPosY * SMP) - 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP)
+		+ 1, GRN);
+	ft_mlx_pixel_put(data->img, (data->pPosX * SMP), (data->pPosY * SMP)
+		- 1, GRN);
 	return (0);
 }
 
 int	print_minimap(t_data *data, int x, int y, int nb)
 {
 	t_map	minimap;
+
 	minimap.h = SMP;
 	minimap.x = x;
 	minimap.y = y;
-	if (nb == 0 )
+	if (nb == 0)
 		draw_sqr_minimap(data, minimap, WHT);
 	if (nb == 1)
 		draw_sqr_minimap(data, minimap, GRY);
@@ -79,7 +88,6 @@ int	minimap_dir(t_data *data)
 	return (0);
 }
 
-
 int	minimap(t_data *data)
 {
 	int	i;
@@ -97,4 +105,3 @@ int	minimap(t_data *data)
 	minimap_dir(data);
 	return (0);
 }
-

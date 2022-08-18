@@ -16,7 +16,7 @@ void	dda(t_data *data, t_raycasting *rc)
 {
 	while (rc->hit == 0)
 	{
-  		if (rc->sideDistX < rc->sideDistY)
+		if (rc->sideDistX < rc->sideDistY)
 		{
 			rc->sideDistX += rc->deltaDistX;
 			rc->mapX += rc->stepX;

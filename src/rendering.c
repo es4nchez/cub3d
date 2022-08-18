@@ -15,7 +15,4 @@
 void	rendering(t_data *data)
 {
 	(void)data;
-	printf("test2\n");
-//	draw_line(data, data->render->drawStart, data->render->drawEnd);
 }
-

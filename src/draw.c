@@ -25,10 +25,8 @@ int	trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	select_side(t_data *data, t_raycasting *rc)
+int	select_side(t_raycasting *rc)
 {
-	(void)data;
-
 	if (rc->side == 0)
 	{
 		if (rc->rayDirX > 0)
@@ -43,12 +41,11 @@ int	select_side(t_data *data, t_raycasting *rc)
 		else
 			return (RED);
 	}
-
 }
 
 int	draw_vert(t_data *data, t_raycasting *rc, int x)
 {
-	int i;
+	int	i;
 	int	y;
 	int	y2;
 	int	color;
@@ -56,12 +53,12 @@ int	draw_vert(t_data *data, t_raycasting *rc, int x)
 	i = 0;
 	y = rc->drawStart;
 	y2 = rc->drawEnd;
-	color = select_side(data, rc);
+	color = select_side(rc);
 	while (i < y)
 		ft_mlx_pixel_put(data->img, x, i++, data->f);
-    while (y < y2)
+	while (y < y2)
 		ft_mlx_pixel_put(data->img, x, y++, 3553695);
 	while (y < (WIN_H - 1))
 		ft_mlx_pixel_put(data->img, x, y++, data->c);
-    return (0);
+	return (0);
 }

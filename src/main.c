@@ -36,7 +36,6 @@ int	exit_game(t_data *data)
 
 int	main(int ac, char **av)
 {
-	(void)ac;
 	t_data	data;
 
 	printf("\nStarting game...\n\n");
@@ -53,4 +52,3 @@ int	main(int ac, char **av)
 	mlx_loop(data.mlx);
 	return (0);
 }
-

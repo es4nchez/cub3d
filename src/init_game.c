@@ -14,8 +14,6 @@
 
 void	init_data(t_data *data)
 {
-//	t_rc	*rc;
-
 	data->planeY = 0;
 	data->planeX = 0.66;
 	data->activateMinimap = 1;
@@ -45,5 +43,4 @@ void	init_game(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "Duckenstein");
 	load_assets(data);
 	texture_loading(data);
-//	exit (1);
 }

@@ -39,10 +39,8 @@ int	calculate_distance(t_data *data, t_raycasting *rc)
 
 void	projected_distance(t_raycasting *rc)
 {
-	if(rc->side == 0)
+	if (rc->side == 0)
 		rc->perpWallDist = (rc->sideDistX - rc->deltaDistX);
 	else
 		rc->perpWallDist = (rc->sideDistY - rc->deltaDistY);
-//	printf("rcWallDist : %f\n", rc->perpWallDist);
-//	printf("perpWallDist : %f\n", rc->perpWallDist);
 }
