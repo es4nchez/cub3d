@@ -71,12 +71,10 @@ int	raycasting(t_data *data)
 
 int	displayer(t_data *data)
 {
-	data->img = malloc(sizeof(t_imgptr));
-	data->img->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
-	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits, &data->img->line, &data->img->end);
 	raycasting(data);
 	if (data->activate_minimap > 0)
 		minimap(data);
  	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+ //	mlx_destroy_image(data->mlx, data->img);
 	return (1);
 }

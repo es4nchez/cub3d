@@ -47,7 +47,7 @@ int	texturing(t_data *data, t_raycasting *rc, int x)
 //		printf("pix :%d\n", pix);
 		if (pix >= 0 && pix < 1024)
 			color = data->n_addr->pxs[(rc->texheight * rc->texy) + rc->texx];
-		ft_mlx_pixel_put(data->img, y, x, color);
+		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
 	}
 
