@@ -16,7 +16,7 @@ int	texture_rendering(t_data *data, t_raycasting *rc)
 {
 	rc->texwidth = data->n_addr->w;
 	rc->texheight = data->n_addr->h;
-	printf("w : %d\nh : %d\n", data->n_addr->w, data->n_addr->h);
+//	printf("w : %d\nh : %d\n", data->n_addr->w, data->n_addr->h);
 	if (rc->side == 0)
 		rc->wallx = data->pposy + rc->perpwalldist * rc->raydiry;
 	else
