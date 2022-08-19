@@ -168,6 +168,8 @@ int		floorCeiling(t_data *data, t_raycasting *rc);
 int		mouse(int x, int y, t_data *data);
 int		load_assets(t_data *data);
 int		texture_loading(t_data *data);
+int		texture_rendering(t_data *data, t_raycasting *rc);
+int		texturing(t_data *data, t_raycasting *rc, int x);
 
 // Utils function
 int		ft_atoi(const char *nptr);
