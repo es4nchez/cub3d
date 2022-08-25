@@ -34,7 +34,7 @@ int	select_side(t_raycasting *rc)
 		else
 			return (GRN);
 	}
-	else if (rc->side == 2 || rc->side ==3)
+	else if (rc->side == 2 || rc->side == 3)
 	{
 		if (rc->raydiry > 0)
 			return (BLU);
@@ -50,13 +50,10 @@ int	draw_vert(t_data *data, t_raycasting *rc, int x)
 	int	i;
 	int	y;
 	int	y2;
-	int	color;
 
 	i = 0;
 	y = rc->drawstart;
 	y2 = rc->drawend;
-	(void)color;
-//	color = select_side(rc);
 	while (i < y)
 		ft_mlx_pixel_put(data->img, x, i++, data->c);
 	while (y < y2)

@@ -27,6 +27,9 @@
 # include "../libft/libft.h"
 # include "../inc/key_macos.h"
 
+# define SUCCESS 1
+# define ERROR 0
+
 //# define WIN_W (1280 * 2)
 # define WIN_W 1920
 //# define WIN_H (720 * 2)
@@ -170,12 +173,26 @@ int		mouse_move(t_data *data);
 int		floorCeiling(t_data *data, t_raycasting *rc);
 int		mouse(int x, int y, t_data *data);
 int		load_assets(t_data *data);
-int		texture_loading(t_data *data);
 int		texture_rendering(t_data *data, t_raycasting *rc);
 int		texturing(t_data *data, t_raycasting *rc, int x);
+int		fill_color(int *output, char *color);
+int		free_tab(char **tab);
+int		ft_selftrim(char **s1, const char *set);
+int		tab_len(char **tab);
+int		search_args(t_data *data, int fd);
+int		open_filename(char *filename);
 
 // Utils function
 int		ft_atoi(const char *nptr);
 size_t	ft_strlen(const char *s);
+int		concat_tab(char ***tab, char *newstr);
+char	*get_next_line(int fd);
+void	remove_gnl_endline(char *str);
+void	init_player_pos(t_data *data, int x, int y, char *ori);
+int		check_around(t_data *data, char **raw, int x, int y);
+int		search_map(char ***raw, int fd);
+int		check_map(char **raw, t_data *data);
+int		convert_map(char **raw, t_data *data);
+void	display_infos(t_data *data);
 
 #endif

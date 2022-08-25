@@ -14,14 +14,14 @@
 
 int	texture_picker(t_data *data, t_raycasting *rc, int pix)
 {
-	if (rc->side == 0)
-		return(data->w_addr->pxs[(int)pix]);
-	if (rc->side == 1)
-		return(data->w_addr->pxs[(int)pix]);
-	if (rc->side == 2)
-		return(data->w_addr->pxs[(int)pix]);
+	if (rc->side == 0 && rc->raydirx > 0)
+		return (data->n_addr->pxs[(int)pix]);
+	if (rc->side == 0 && rc->raydirx <= 0)
+		return (data->s_addr->pxs[(int)pix]);
+	if (rc->side == 1 && rc->raydiry >= 0)
+		return (data->w_addr->pxs[(int)pix]);
 	else
-		return(data->w_addr->pxs[(int)pix]);
+		return (data->e_addr->pxs[(int)pix]);
 }
 
 int	texture_rendering(t_data *data, t_raycasting *rc)
@@ -34,9 +34,9 @@ int	texture_rendering(t_data *data, t_raycasting *rc)
 		rc->wallx = data->pposx + (rc->perpwalldist * rc->raydirx);
 	rc->wallx -= floor(rc->wallx);
 	rc->texx = (int)(rc->wallx * (double)rc->texwidth);
-	if(rc->side == 0 && rc->raydirx <= 0)
+	if (rc->side == 0 && rc->raydirx <= 0)
 		rc->texx = rc->texwidth - rc->texx - 1;
-	if(rc->side == 1 && rc->raydiry >= 0)
+	if (rc->side == 1 && rc->raydiry >= 0)
 		rc->texx = rc->texwidth - rc->texx - 1;
 	return (1);
 }
@@ -46,13 +46,13 @@ int	texturing(t_data *data, t_raycasting *rc, int x)
 	int		y;
 	int		color;
 	double	step;
-	float		pix;
+	float	pix;
 
 	y = rc->drawstart;
 	texture_rendering(data, rc);
 	step = 1.0 * rc->texheight / rc->lineheight;
 	rc->texpos = (rc->drawstart - data->horizon + rc->lineheight / 2) * step;
-	while(y < rc->drawend)
+	while (y < rc->drawend)
 	{
 		rc->texy = (int)rc->texpos & (rc->texheight - 1);
 		rc->texpos += step;
@@ -60,29 +60,6 @@ int	texturing(t_data *data, t_raycasting *rc, int x)
 		color = texture_picker(data, rc, pix);
 		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
-	}
-	return (1);
-}
-
-int	floor_ceiling(t_data *data, t_raycasting *rc)
-{
-	int	i;
-	int	j;
-
-	(void)rc;
-	i = 0;
-	while (i < WIN_W)
-	{
-		j = 0;
-		while (j < WIN_W)
-		{
-			if (i < (WIN_H / 2))
-				ft_mlx_pixel_put(data->img, j, i, BRC);
-			else
-				ft_mlx_pixel_put(data->img, j, i, WOD);
-			j++;
-		}
-		i++;
 	}
 	return (1);
 }

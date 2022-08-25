@@ -72,7 +72,6 @@ int	move_right(t_data *data)
 
 	data->pdir += 5;
 	data->pdir %= 360;
-
 	olddirx = data->pdirx;
 	olddiry = data->pdiry;
 	oldplanex = data->planex;

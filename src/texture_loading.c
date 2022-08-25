@@ -15,22 +15,24 @@
 int	load_assets(t_data *data)
 {
 	data->n_addr = malloc(sizeof(t_imgptr *) * 4);
-	data->n_addr->img = mlx_xpm_file_to_image(data->mlx, data->no, &data->n_addr->w, &data->n_addr->h);
-	data->n_addr->pxs = (int *)mlx_get_data_addr(data->n_addr->img, &data->n_addr->bits, &data->n_addr->line, &data->n_addr->end);
+	data->n_addr->img = mlx_xpm_file_to_image(data->mlx, data->no,
+			&data->n_addr->w, &data->n_addr->h);
+	data->n_addr->pxs = (int *)mlx_get_data_addr(data->n_addr->img,
+			&data->n_addr->bits, &data->n_addr->line, &data->n_addr->end);
 	data->s_addr = malloc(sizeof(t_imgptr *) * 4);
-	data->s_addr->img = mlx_xpm_file_to_image(data->mlx, data->so, &data->s_addr->w, &data->s_addr->h);
-	data->s_addr->pxs = (int *)mlx_get_data_addr(data->s_addr->img, &data->s_addr->bits, &data->s_addr->line, &data->s_addr->end);
+	data->s_addr->img = mlx_xpm_file_to_image(data->mlx, data->so,
+			&data->s_addr->w, &data->s_addr->h);
+	data->s_addr->pxs = (int *)mlx_get_data_addr(data->s_addr->img,
+			&data->s_addr->bits, &data->s_addr->line, &data->s_addr->end);
 	data->w_addr = malloc(sizeof(t_imgptr *) * 4);
-	data->w_addr->img = mlx_xpm_file_to_image(data->mlx, data->we, &data->w_addr->w, &data->w_addr->h);
-	data->w_addr->pxs = (int *)mlx_get_data_addr(data->w_addr->img, &data->w_addr->bits, &data->w_addr->line, &data->w_addr->end);
+	data->w_addr->img = mlx_xpm_file_to_image(data->mlx, data->we,
+			&data->w_addr->w, &data->w_addr->h);
+	data->w_addr->pxs = (int *)mlx_get_data_addr(data->w_addr->img,
+			&data->w_addr->bits, &data->w_addr->line, &data->w_addr->end);
 	data->e_addr = malloc(sizeof(t_imgptr *) * 4);
-	data->e_addr->img = mlx_xpm_file_to_image(data->mlx, data->ea, &data->e_addr->w, &data->e_addr->h);
-	data->e_addr->pxs = (int *)mlx_get_data_addr(data->e_addr->img, &data->e_addr->bits, &data->e_addr->line, &data->e_addr->end);
-	return (1);
-}
-
-int	texture_loading(t_data *data)
-{
-	(void)data;
+	data->e_addr->img = mlx_xpm_file_to_image(data->mlx, data->ea,
+			&data->e_addr->w, &data->e_addr->h);
+	data->e_addr->pxs = (int *)mlx_get_data_addr(data->e_addr->img,
+			&data->e_addr->bits, &data->e_addr->line, &data->e_addr->end);
 	return (1);
 }
