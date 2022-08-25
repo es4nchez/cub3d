@@ -12,20 +12,32 @@
 
 #include "../inc/cub3d.h"
 
+int	texture_picker(t_data *data, t_raycasting *rc, int pix)
+{
+	if (rc->side == 0)
+		return(data->w_addr->pxs[(int)pix]);
+	if (rc->side == 1)
+		return(data->w_addr->pxs[(int)pix]);
+	if (rc->side == 2)
+		return(data->w_addr->pxs[(int)pix]);
+	else
+		return(data->w_addr->pxs[(int)pix]);
+}
+
 int	texture_rendering(t_data *data, t_raycasting *rc)
 {
 	rc->texwidth = data->n_addr->w;
 	rc->texheight = data->n_addr->h;
-//	printf("w : %d\nh : %d\n", data->n_addr->w, data->n_addr->h);
 	if (rc->side == 0)
-		rc->wallx = data->pposy + rc->perpwalldist * rc->raydiry;
+		rc->wallx = data->pposy + (rc->perpwalldist * rc->raydiry);
 	else
-		rc->wallx = data->pposx + rc->perpwalldist * rc->raydirx;
-	rc->texx = (int)(rc->wallx * rc->texwidth);
-	if(rc->side == 0 && rc->raydirx > 0)
-		rc->texx = ((rc->texwidth * (rc->texheight - 1)) - rc->texx - 1);
-	if(rc->side == 1 && rc->raydiry < 0)
-		rc->texx = ((rc->texwidth * (rc->texheight - 1)) - rc->texx - 1);
+		rc->wallx = data->pposx + (rc->perpwalldist * rc->raydirx);
+	rc->wallx -= floor(rc->wallx);
+	rc->texx = (int)(rc->wallx * (double)rc->texwidth);
+	if(rc->side == 0 && rc->raydirx <= 0)
+		rc->texx = rc->texwidth - rc->texx - 1;
+	if(rc->side == 1 && rc->raydiry >= 0)
+		rc->texx = rc->texwidth - rc->texx - 1;
 	return (1);
 }
 
@@ -34,23 +46,26 @@ int	texturing(t_data *data, t_raycasting *rc, int x)
 	int		y;
 	int		color;
 	double	step;
-	int		pix;
+	float		pix;
 
 	y = rc->drawstart;
-	step = (double)rc->texheight / (double)rc->lineheight;
-	rc->texpos = (rc->drawstart - data->horizon + ((double)rc->lineheight / 2)) * step;
+	texture_rendering(data, rc);
+	step = 1.0 * rc->texheight / rc->lineheight;
+	rc->texpos = (rc->drawstart - data->horizon + rc->lineheight / 2) * step;
 	while(y < rc->drawend)
 	{
-		rc->texy = (int)rc->texpos;
+		rc->texy = (int)rc->texpos & (rc->texheight - 1);
 		rc->texpos += step;
-		pix = rc->texheight * rc->texy + rc->texx;
-//		printf("pix :%d\n", pix);
-		if (pix >= 0 && pix < 1024)
-			color = data->n_addr->pxs[(rc->texheight * rc->texy) + rc->texx];
+		pix = (rc->texheight * (rc->texy) + rc->texx);
+//			printf("\npix : %d\ntexHeight : %d\ntexWidth : %d\ntexx : %d\ntexy : %d\n\n", (int)pix, rc->texheight, rc->texwidth, rc->texx, rc->texy);
+//			printf("drawstart: %d\nhorizon : %d\nlineheight : %f\nstep :%f\n", rc->drawstart, data->horizon, (double)rc->lineheight, step);
+	//	printf("mapx : %d\nmaxy : %d\n", rc->mapx, rc->mapy);
+	//		exit (0);
+		color = texture_picker(data, rc, pix);
 		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
 	}
-
+//	exit (0);
 	return (1);
 }
 

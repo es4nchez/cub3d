@@ -16,6 +16,7 @@ void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color)
 {
 	char	*dst;
 
+//	printf("x ; %d\ny : %d\ncolor : %d\n", x, y, color);
 	dst = img->path + (y * img->line + x * (img->bits / 8));
 	*(unsigned int *)dst = color;
 }
@@ -27,20 +28,22 @@ int	trgb(int t, int r, int g, int b)
 
 int	select_side(t_raycasting *rc)
 {
-	if (rc->side == 0)
+	if (rc->side == 0 || rc->side == 1)
 	{
 		if (rc->raydirx > 0)
 			return (GRY);
 		else
 			return (GRN);
 	}
-	else
+	else if (rc->side == 2 || rc->side ==3)
 	{
 		if (rc->raydiry > 0)
 			return (BLU);
 		else
 			return (RED);
 	}
+	else
+		return (DRY);
 }
 
 int	draw_vert(t_data *data, t_raycasting *rc, int x)
@@ -53,7 +56,8 @@ int	draw_vert(t_data *data, t_raycasting *rc, int x)
 	i = 0;
 	y = rc->drawstart;
 	y2 = rc->drawend;
-	color = select_side(rc);
+	(void)color;
+//	color = select_side(rc);
 	while (i < y)
 		ft_mlx_pixel_put(data->img, x, i++, data->c);
 	while (y < y2)

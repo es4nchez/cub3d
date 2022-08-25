@@ -77,8 +77,8 @@ int	minimap_dir(t_data *data)
 	float	y;
 
 	i = 0;
-	s = 0.1;
-	while (++i <= 8)
+	s = 0.2;
+	while (++i <= 20)
 	{
 		x = data->pposx + data->pdirx * s;
 		y = data->pposy + data->pdiry * s;

@@ -28,12 +28,12 @@
 # include "../inc/key_macos.h"
 
 //# define WIN_W (1280 * 2)
-# define WIN_W 1280
+# define WIN_W 1920
 //# define WIN_H (720 * 2)
-# define WIN_H 720
+# define WIN_H 1080
 
 # define SPD	0.1
-# define SMP 5
+# define SMP 10
 
 # define RSP	0.05
 
@@ -101,7 +101,7 @@ typedef struct s_raycasting {
 	double	deltadisty;
 	double	perpwalldist;
 	double	wallx;
-	double	texwidth;
+	int		texwidth;
 	int		texx;
 	int		texy;
 	double	texpos;
@@ -142,6 +142,9 @@ typedef struct s_data {
 	int			c;
 	char		*sw_addr;
 	t_imgptr	*n_addr;
+	t_imgptr	*s_addr;
+	t_imgptr	*w_addr;
+	t_imgptr	*e_addr;
 	char		*ew_addr;
 	char		*ww_addr;
 }				t_data;
