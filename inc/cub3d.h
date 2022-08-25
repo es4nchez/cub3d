@@ -32,10 +32,10 @@
 //# define WIN_H (720 * 2)
 # define WIN_H 1080
 
-# define SPD	0.1
-# define SMP 10
+# define SPD 0.1
+# define SMP 5
 
-# define RSP	0.05
+# define RSP 0.05
 
 # define RED 0x00FF0000
 # define WHT 0x00FFFFFF

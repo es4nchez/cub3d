@@ -16,7 +16,6 @@ void	ft_mlx_pixel_put(t_imgptr *img, int x, int y, int color)
 {
 	char	*dst;
 
-//	printf("x ; %d\ny : %d\ncolor : %d\n", x, y, color);
 	dst = img->path + (y * img->line + x * (img->bits / 8));
 	*(unsigned int *)dst = color;
 }

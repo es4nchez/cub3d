@@ -57,15 +57,10 @@ int	texturing(t_data *data, t_raycasting *rc, int x)
 		rc->texy = (int)rc->texpos & (rc->texheight - 1);
 		rc->texpos += step;
 		pix = (rc->texheight * (rc->texy) + rc->texx);
-//			printf("\npix : %d\ntexHeight : %d\ntexWidth : %d\ntexx : %d\ntexy : %d\n\n", (int)pix, rc->texheight, rc->texwidth, rc->texx, rc->texy);
-//			printf("drawstart: %d\nhorizon : %d\nlineheight : %f\nstep :%f\n", rc->drawstart, data->horizon, (double)rc->lineheight, step);
-	//	printf("mapx : %d\nmaxy : %d\n", rc->mapx, rc->mapy);
-	//		exit (0);
 		color = texture_picker(data, rc, pix);
 		ft_mlx_pixel_put(data->img, x, y, color);
 		y++;
 	}
-//	exit (0);
 	return (1);
 }
 

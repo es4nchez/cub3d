@@ -60,10 +60,7 @@ int	raycasting(t_data *data)
 		projected_distance(&rc);
 		stripe_calculator(data, &rc);
 		draw_vert(data, &rc, x);
-		texture_rendering(data, &rc);
 		texturing(data, &rc, x);
-//		floorCeiling(data, &rc);
-//		draw_vert(data, &rc, x);
 		x++;
 	}
 	return (1);
