@@ -128,7 +128,7 @@ typedef struct s_data {
 	float		pposy;
 	float		pdirx;
 	float		pdiry;
-	int			pdir;
+	char		pdir;
 	float		planex;
 	float		planey;
 	float		dirx;
@@ -170,7 +170,7 @@ int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
 int		mouse_move(t_data *data);
-int		floorCeiling(t_data *data, t_raycasting *rc);
+//int		floorCeiling(t_data *data, t_raycasting *rc);
 int		mouse(int x, int y, t_data *data);
 int		load_assets(t_data *data);
 int		texture_rendering(t_data *data, t_raycasting *rc);
@@ -181,6 +181,7 @@ int		ft_selftrim(char **s1, const char *set);
 int		tab_len(char **tab);
 int		search_args(t_data *data, int fd);
 int		open_filename(char *filename);
+int		move_start(t_data *data, float dist);
 
 // Utils function
 int		ft_atoi(const char *nptr);

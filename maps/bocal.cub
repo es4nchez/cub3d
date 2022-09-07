@@ -1,7 +1,7 @@
-NO ./assets/bocal_north.xpm
-SO ./assets/bocal_south.xpm
-WE ./assets/bocal_west.xpm
-EA ./assets/bocal_east.xpm
+NO ./assets/normal_north.xpm
+SO ./assets/normal_south.xpm
+WE ./assets/normal_west.xpm
+EA ./assets/normal_east.xpm
 
 M ./sound/imperial.mp3
 F 88,88,88

@@ -54,16 +54,18 @@ void	remove_gnl_endline(char *str)
 
 void	init_player_pos(t_data *data, int x, int y, char *ori)
 {
+//	(void)x;
+//	(void)y;
 	data->pposx = x + 0.5;
 	data->pposy = y + 0.5;
 	if (*ori == 'N')
-		data->pdir = 0;
+		data->pdir = 'N';
 	if (*ori == 'S')
-		data->pdir = 1;
+		data->pdir = 'S';
 	if (*ori == 'W')
-		data->pdir = 2;
+		data->pdir = 'W';
 	if (*ori == 'E')
-		data->pdir = 3;
+		data->pdir = 'E';
 	*ori = '0';
 }
 

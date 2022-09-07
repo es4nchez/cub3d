@@ -21,18 +21,35 @@ void	init_data(t_data *data)
 	data->horizon = WIN_H / 2;
 }
 
+int	move_start(t_data *data, float dist)
+{
+	float	olddirx;
+	float	olddiry;
+	float	oldplanex;
+
+	olddirx = data->pdirx;
+	olddiry = data->pdiry;
+	oldplanex = data->planex;
+	data->pdirx = data->pdirx * cos(dist) - data->pdiry * sin(dist);
+	data->pdiry = olddirx * sin(dist) + data->pdiry * cos(dist);
+	data->planex = data->planex * cos(dist) - data->planey * sin(dist);
+	data->planey = oldplanex * sin(dist) + data->planey * cos(dist);
+	return (0);
+}
+
 void	init_player(t_data *data)
 {
 	data->pdirx = 0;
-	data->pdiry = 0;
-	if (data->pdir == 0)
-		data->pdiry = -1;
-	if (data->pdir == 1)
-		data->pdiry = 1;
-	if (data->pdir == 2)
-		data->pdirx = -1;
-	if (data->pdir == 3)
-		data->pdirx = 1;
+	data->pdiry = -1;
+	printf("pdir : %d\n", data->pdir);
+	if (data->pdir == 'N')
+		move_start(data, 0);
+	if (data->pdir == 'S')
+		move_start(data, (M_PI));
+	if (data->pdir == 'W')
+		move_start(data, -(M_PI / 2));
+	if (data->pdir == 'E')
+		move_start(data, (M_PI / 2));
 }
 
 void	init_game(t_data *data)
@@ -46,4 +63,6 @@ void	init_game(t_data *data)
 	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits,
 			&data->img->line, &data->img->end);
 	load_assets(data);
+	mlx_mouse_move(data->win, (int)(WIN_W / 2), (int)(WIN_H / 2));
+	mlx_mouse_hide(data->win);
 }
