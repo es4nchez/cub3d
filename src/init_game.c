@@ -41,7 +41,6 @@ void	init_player(t_data *data)
 {
 	data->pdirx = 0;
 	data->pdiry = -1;
-	printf("pdir : %d\n", data->pdir);
 	if (data->pdir == 'N')
 		move_start(data, 0);
 	if (data->pdir == 'S')

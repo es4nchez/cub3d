@@ -41,6 +41,7 @@
 # define RSP 0.05
 
 # define RED 0x00FF0000
+# define BLK 0x00999999
 # define WHT 0x00FFFFFF
 # define GRN 0x0000FF00
 # define BLU 0x000000FF
@@ -67,19 +68,6 @@ typedef struct s_img {
 	int		img_width;
 	int		img_height;
 }				t_img;
-
-typedef struct s_line {
-	float	x1;
-	float	x2;
-	float	y1;
-	float	y2;
-	float	i;
-	float	dx;
-	float	dy;
-	float	step;
-	float	xin;
-	float	yin;
-}				t_line;
 
 typedef struct s_map {
 	int	x;
@@ -117,8 +105,6 @@ typedef struct s_raycasting {
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
-	int			j;
-	char		*buff;
 	int			**map;
 	t_imgptr	*img;
 	double		mapwidth;
@@ -131,10 +117,6 @@ typedef struct s_data {
 	char		pdir;
 	float		planex;
 	float		planey;
-	float		dirx;
-	float		diry;
-	float		speed;
-	int			minimap_size;
 	int			activate_minimap;
 	int			activate_mouse;
 	char		*no;
@@ -143,7 +125,6 @@ typedef struct s_data {
 	char		*ea;
 	int			f;
 	int			c;
-	char		*sw_addr;
 	t_imgptr	*n_addr;
 	t_imgptr	*s_addr;
 	t_imgptr	*w_addr;
@@ -170,7 +151,6 @@ int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
 int		mouse_move(t_data *data);
-//int		floorCeiling(t_data *data, t_raycasting *rc);
 int		mouse(int x, int y, t_data *data);
 int		load_assets(t_data *data);
 int		texture_rendering(t_data *data, t_raycasting *rc);
@@ -195,5 +175,6 @@ int		search_map(char ***raw, int fd);
 int		check_map(char **raw, t_data *data);
 int		convert_map(char **raw, t_data *data);
 void	display_infos(t_data *data);
+int		trgb(int t, int r, int g, int b);
 
 #endif

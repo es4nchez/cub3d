@@ -55,8 +55,6 @@ int	raycasting(t_data *data)
 	x = 0;
 	while (x <= WIN_W)
 	{
-		printf("pdirx : %f\n", data->pdirx);
-		printf("pdiry : %f\n", data->pdiry);
 		init_raycasting(data, &rc);
 		raydir(data, &rc, x);
 		calculate_distance(data, &rc);

@@ -32,7 +32,7 @@ LIBS		= -framework OpenGL -framework AppKit
 
 NAME		= cub3d
 
-CC			= cc -fsanitize=address
+CC			= cc
 AR			= ar rcs
 MKDIR		= mkdir
 CP			= cp -f
@@ -42,23 +42,18 @@ CFLAGS		= -Wall -Wextra -Werror
 
 all:		${NAME}
 
-#Compile normal executable
 ${NAME}:	${O_DIR} ${OBJS}
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS}
 
-#Create objects directory
 ${O_DIR}:
 			${MKDIR} ${O_DIR}
 
-#Compile normals objects
-${O_DIR}%.o:${SRCS_DIR}%.c
+${O_DIR}%.o:${SRCS_DIR}%.c | inc/cub3d.h
 			${CC} ${CFLAGS} ${HEADS} -o $@ -c $<
 
-#Compile libft
 ${LIBFT}/libft.a:
 			${MAKELIB} all
 
-#Compile minilibx
 ${LIBX}/libmlx.a:
 			@${MAKELIBX} all
 

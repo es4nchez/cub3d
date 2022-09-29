@@ -54,8 +54,6 @@ void	remove_gnl_endline(char *str)
 
 void	init_player_pos(t_data *data, int x, int y, char *ori)
 {
-//	(void)x;
-//	(void)y;
 	data->pposx = x + 0.5;
 	data->pposy = y + 0.5;
 	if (*ori == 'N')
@@ -104,6 +102,6 @@ int	read_map(t_data *data, char *filename)
 		return (ERROR);
 	if (!convert_map(raw, data))
 		return (ERROR);
-	display_infos(data);
+//	display_infos(data);
 	return (SUCCESS);
 }

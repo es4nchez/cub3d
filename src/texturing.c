@@ -41,6 +41,24 @@ int	texture_rendering(t_data *data, t_raycasting *rc)
 	return (1);
 }
 
+int	fog(t_raycasting *rc, int color)
+{
+	float	dist;
+	int		r;
+	int		g;
+	int		b;
+
+	(void)rc;
+	dist = 0.75;
+	r = (color >> 16) & 0xFF;
+	g = (color >> 8) & 0xFF;
+	b = color & 0xFF;
+	r = (1 - dist) * WHT + dist * r;
+	g = (1 - dist) * WHT + dist * g;
+	b = (1 - dist) * WHT + dist * b;
+	return (trgb(0, r, g, b));
+}
+
 int	texturing(t_data *data, t_raycasting *rc, int x)
 {
 	int		y;

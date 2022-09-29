@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	printf("\nStarting game...\n\n");
+	printf("\nStarting game...\n");
 	if (!args_error(ac))
 		return (0);
 	if (!load_map(&data, av[1]))

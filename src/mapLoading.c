@@ -27,6 +27,5 @@ int	load_map(t_data *data, char *s)
 		printf("PARSE ERROR\n");
 		return (0);
 	}
-	printf("\nx : %f\ny : %f\n", data->mapwidth, data->mapheight);
 	return (1);
 }
