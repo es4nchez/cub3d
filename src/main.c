@@ -27,13 +27,6 @@ int	args_error(int ac)
 	return (1);
 }
 
-int	exit_game(t_data *data)
-{
-	(void)data;
-	exit (0);
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_data	data;
