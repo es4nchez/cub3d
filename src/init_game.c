@@ -57,7 +57,7 @@ void	init_game(t_data *data)
 	init_player(data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "duckenstein");
-	data->img = malloc(sizeof(t_imgptr));
+	data->img = ft_calloc(1, sizeof(t_imgptr));
 	data->img->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
 	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits,
 			&data->img->line, &data->img->end);

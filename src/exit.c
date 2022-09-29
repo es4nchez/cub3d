@@ -18,5 +18,7 @@ int	exit_game(t_data *data)
 	free(data->s_addr);
 	free(data->w_addr);
 	free(data->e_addr);
+	free(data->img);
+	free(data->map);
 	exit (0);
 }
