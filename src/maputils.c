@@ -42,6 +42,20 @@ int	search_map(char ***raw, int fd)
 	return (SUCCESS);
 }
 
+int	free_raw_map(char **raw)
+{
+	int	i;
+
+	i = 0;
+	while (raw != NULL && raw[i] != NULL)
+	{
+		free(raw[i]);
+		i++;
+	}
+	free(raw);
+	return (ERROR);
+}
+
 int	check_map(char **raw, t_data *data)
 {
 	int	len;
@@ -60,9 +74,9 @@ int	check_map(char **raw, t_data *data)
 			if (ft_strchr("NSWE", raw[len][i]) != NULL && data->pposx == -1)
 				init_player_pos(data, i, len, &raw[len][i]);
 			else if (raw[len][i] == '0' && !check_around(data, raw, i, len))
-				return (ERROR);
+				return (free_raw_map(raw));
 			else if (ft_strchr(" 01", raw[len][i]) == NULL)
-				return (ERROR);
+				return (free_raw_map(raw));
 			i++;
 		}
 		len++;
@@ -76,12 +90,12 @@ int	convert_map(char **raw, t_data *data)
 	int	j;
 
 	i = 0;
-	data->map = malloc(sizeof(int *) * data->mapheight);
+	data->map = ft_calloc(sizeof(int *), data->mapheight);
 	if (data->map == NULL)
 		return (ERROR);
 	while (i < data->mapheight)
 	{
-		data->map[i] = malloc(sizeof(int) * data->mapwidth);
+		data->map[i] = ft_calloc(sizeof(int), data->mapwidth);
 		if (data->map[i] == NULL)
 			return (ERROR);
 		j = 0;
@@ -98,6 +112,7 @@ int	convert_map(char **raw, t_data *data)
 	return (SUCCESS);
 }
 
+/*
 void	display_infos(t_data *data)
 {
 	int	i;
@@ -124,3 +139,4 @@ void	display_infos(t_data *data)
 		i++;
 	}
 }
+*/

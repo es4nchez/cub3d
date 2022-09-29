@@ -71,7 +71,7 @@ int	check_around(t_data *data, char **raw, int x, int y)
 {
 	if (x <= 0 || x >= (int)ft_strlen(raw[y]) - 1)
 		return (ERROR);
-	if (y <= 0 || y >= data->mapheight)
+	if (y <= 0 || y >= data->mapheight - 1)
 		return (ERROR);
 	if (raw[y][x - 1] == ' ' || raw[y][x + 1] == ' ')
 		return (ERROR);

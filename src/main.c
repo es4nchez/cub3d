@@ -38,6 +38,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	ft_bzero(&data, sizeof(t_data));
 	printf("\nStarting game...\n");
 	if (!args_error(ac))
 		return (0);
