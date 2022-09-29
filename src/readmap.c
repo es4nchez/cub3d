@@ -102,6 +102,5 @@ int	read_map(t_data *data, char *filename)
 		return (ERROR);
 	if (!convert_map(raw, data))
 		return (ERROR);
-//	display_infos(data);
 	return (SUCCESS);
 }
