@@ -14,11 +14,16 @@
 
 int	exit_game(t_data *data)
 {
+	int i;
+
+	i = 0;
 	free(data->n_addr);
 	free(data->s_addr);
 	free(data->w_addr);
 	free(data->e_addr);
 	free(data->img);
+	while (i < data->mapheight)
+		free(data->map[i++]);
 	free(data->map);
 	exit (0);
 }
