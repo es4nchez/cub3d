@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 	if (init_game(&data))
 	{
 		printf("Error in assets path\n");
-		return (1);
+		exit_game(&data);
 	}
 	printf("\nInit done.\n\n");
 	mlx_loop_hook(data.mlx, displayer, &data);
