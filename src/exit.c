@@ -14,7 +14,7 @@
 
 int	exit_game(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	free(data->n_addr);

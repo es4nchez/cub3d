@@ -137,7 +137,7 @@ typedef struct s_data {
 int		load_map(t_data *data, char *s);
 void	get_pos(t_data *data);
 void	create_intmap(t_data *data);
-void	init_game(t_data *data);
+int		init_game(t_data *data);
 int		gameplay(int keycode, t_data *data);
 int		displayer(t_data *data);
 void	rendering(t_data *data);

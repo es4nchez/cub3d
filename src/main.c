@@ -37,7 +37,11 @@ int	main(int ac, char **av)
 		return (0);
 	if (!load_map(&data, av[1]))
 		return (0);
-	init_game(&data);
+	if (init_game(&data))
+	{
+		printf("Error in assets path\n");
+		return (1);
+	}
 	printf("\nInit done.\n\n");
 	mlx_loop_hook(data.mlx, displayer, &data);
 	mlx_hook(data.win, 2, 1L << 0, gameplay, &data);

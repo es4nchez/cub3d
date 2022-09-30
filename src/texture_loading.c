@@ -12,8 +12,23 @@
 
 #include "../inc/cub3d.h"
 
+int	check_assets(t_data *data)
+{
+	if (open(data->no, 'r') == -1)
+		return (1);
+	if (open(data->so, 'r') == -1)
+		return (1);
+	if (open(data->we, 'r') == -1)
+		return (1);
+	if (open(data->ea, 'r') == -1)
+		return (1);
+	return (0);
+}
+
 int	load_assets(t_data *data)
 {
+	if (check_assets(data))
+		return (1);
 	data->n_addr = ft_calloc(1, sizeof(t_imgptr));
 	data->n_addr->img = mlx_xpm_file_to_image(data->mlx, data->no,
 			&data->n_addr->w, &data->n_addr->h);
@@ -34,5 +49,5 @@ int	load_assets(t_data *data)
 			&data->e_addr->w, &data->e_addr->h);
 	data->e_addr->pxs = (int *)mlx_get_data_addr(data->e_addr->img,
 			&data->e_addr->bits, &data->e_addr->line, &data->e_addr->end);
-	return (1);
+	return (0);
 }

@@ -51,7 +51,7 @@ void	init_player(t_data *data)
 		move_start(data, (M_PI / 2));
 }
 
-void	init_game(t_data *data)
+int	init_game(t_data *data)
 {
 	init_data(data);
 	init_player(data);
@@ -61,7 +61,9 @@ void	init_game(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
 	data->img->path = mlx_get_data_addr(data->img->img, &data->img->bits,
 			&data->img->line, &data->img->end);
-	load_assets(data);
+	if (load_assets(data))
+		return (1);
 	mlx_mouse_move(data->win, (int)(WIN_W / 2), (int)(WIN_H / 2));
 	mlx_mouse_hide(data->win);
+	return (0);
 }
