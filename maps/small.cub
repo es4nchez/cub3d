@@ -1,14 +1,11 @@
-NO ./assets/normal_west.xpm
-SO ./assets/normal_west.xpm
+NO ./assets/normal_north.xpm
+SO ./assets/normal_north.xpm
 WE ./assets/normal_west.xpm
-EA ./assets/normal_west.xpm
+EA ./assets/normal_east.xpm
 
 F 0,100,0
 C 0,0,100
 
-111111
-10S011
-100011
-100011
-111111
-111111
+ 1
+1N1
+ 1

@@ -70,9 +70,14 @@ int	raycasting(t_data *data)
 
 int	displayer(t_data *data)
 {
+	data->fps->frame += 1;
 	raycasting(data);
 	if (data->activate_minimap > 0)
 		minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+	fps(data);
+	mlx_string_put(data->mlx, data->win, WIN_W - 80, 20, 20, "FPS : ");
+	mlx_string_put(data->mlx, data->win,
+		WIN_W - 40, 20, 20, ft_itoa(data->fps->frame_now));
 	return (1);
 }

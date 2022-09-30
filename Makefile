@@ -3,7 +3,7 @@ SRCS_FILES	=  main.c
 SRCS_FILES	+= init_game.c mapLoading.c map_args.c map_errors.c maputils.c readmap.c ft_tab.c
 SRCS_FILES	+= gameplay.c minimap.c mouse.c player_moves.c player_lateral_moves.c
 SRCS_FILES	+= dda.c distances.c draw.c raycasting.c texturing.c texture_loading.c
-SRCS_FILES	+= ft_atoi.c ft_itoa.c ft_strlen.c get_next_line.c get_next_line_utils.c exit.c
+SRCS_FILES	+= ft_atoi.c ft_itoa.c ft_strlen.c get_next_line.c get_next_line_utils.c exit.c time.c
 
 SRCS		:= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
@@ -43,7 +43,7 @@ CFLAGS		= -Wall -Wextra -Werror
 all:		${NAME}
 
 ${NAME}:	${O_DIR} ${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS} -fsanitize=address
 
 ${O_DIR}:
 			${MKDIR} ${O_DIR}

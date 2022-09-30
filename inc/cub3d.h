@@ -23,6 +23,8 @@
 # include <stdbool.h>
 # include <string.h>
 # include <math.h>
+# include <stddef.h>
+# include <sys/time.h>
 
 # include "../libft/libft.h"
 # include "../inc/key_macos.h"
@@ -102,10 +104,18 @@ typedef struct s_raycasting {
 	int		drawend;
 }				t_raycasting;
 
+typedef struct s_frame {
+	int		frame;
+	int		frame_now;
+	size_t	starttime;
+	size_t	timestamp;
+}				t_frame;
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
 	int			**map;
+	t_frame		*fps;
 	t_imgptr	*img;
 	double		mapwidth;
 	double		mapheight;
@@ -129,8 +139,6 @@ typedef struct s_data {
 	t_imgptr	*s_addr;
 	t_imgptr	*w_addr;
 	t_imgptr	*e_addr;
-	char		*ew_addr;
-	char		*ww_addr;
 }				t_data;
 
 // Project functions
@@ -176,5 +184,7 @@ int		check_map(char **raw, t_data *data);
 int		convert_map(char **raw, t_data *data);
 void	display_infos(t_data *data);
 int		trgb(int t, int r, int g, int b);
+size_t	time_now(void);
+void	fps(t_data *data);
 
 #endif

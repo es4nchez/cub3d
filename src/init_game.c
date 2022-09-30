@@ -19,6 +19,9 @@ void	init_data(t_data *data)
 	data->activate_minimap = 1;
 	data->activate_mouse = 1;
 	data->horizon = WIN_H / 2;
+	data->fps = ft_calloc(1, sizeof(t_frame));
+	data->fps->frame = 1;
+	data->fps->starttime = time_now();
 }
 
 int	move_start(t_data *data, float dist)

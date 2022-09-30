@@ -3,8 +3,6 @@ SO ./assets/normal_south.xpm
 WE ./assets/normal_west.xpm
 EA ./assets/normal_east.xpm
 
-N ./maps/cursed.cub
-
 F 220,200,0
 C 225,30,0
 
