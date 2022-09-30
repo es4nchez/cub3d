@@ -73,7 +73,7 @@ int	check_map(char **raw, t_data *data)
 		{
 			if (ft_strchr("NSWE", raw[len][i]) != NULL && data->pposx == -1)
 				init_player_pos(data, i, len, &raw[len][i]);
-			else if (raw[len][i] == '0' && !check_around(data, raw, i, len))
+			if (raw[len][i] == '0' && !check_around(data, raw, i, len))
 				return (free_raw_map(raw));
 			else if (ft_strchr(" 01", raw[len][i]) == NULL)
 				return (free_raw_map(raw));

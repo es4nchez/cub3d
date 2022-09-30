@@ -33,7 +33,7 @@ int	fill_arg(t_data *data, char **splitted)
 			return (-10);
 	}
 	else
-		return (0);
+		return (-10);
 	return (1);
 }
 
@@ -70,7 +70,7 @@ int	search_args(t_data *data, int fd)
 			return (ERROR);
 		nbinfos += manage_arg_line(data, tmp);
 		free(tmp);
-		if (nbinfos < 6)
+		if (nbinfos < 6 && nbinfos >= 0)
 			tmp = get_next_line(fd);
 		else
 			tmp = NULL;
