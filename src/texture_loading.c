@@ -14,14 +14,24 @@
 
 int	check_assets(t_data *data)
 {
-	if (open(data->no, 'r') == -1)
+	int	fd;
+
+	fd = open(data->no, 'r');
+	if (!fd)
 		return (1);
-	if (open(data->so, 'r') == -1)
+	close(fd);
+	fd = open(data->so, 'r');
+	if (!fd)
 		return (1);
-	if (open(data->we, 'r') == -1)
+	close(fd);
+	fd = open(data->we, 'r');
+	if (!fd)
 		return (1);
-	if (open(data->ea, 'r') == -1)
+	close(fd);
+	fd = open(data->ea, 'r');
+	if (!fd)
 		return (1);
+	close(fd);
 	return (0);
 }
 
