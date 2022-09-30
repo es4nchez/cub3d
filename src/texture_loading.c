@@ -14,7 +14,7 @@
 
 int	check_assets(t_data *data)
 {
-	int fd;
+	int	fd;
 
 	fd = open(data->no, 'r');
 	if (!fd)
