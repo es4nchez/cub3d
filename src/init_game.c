@@ -55,6 +55,8 @@ int	init_game(t_data *data)
 {
 	init_data(data);
 	init_player(data);
+	if (data->pposx <= 0 || data->pposy <= 0)
+		return (1);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_W, WIN_H, "duckenstein");
 	data->img = ft_calloc(1, sizeof(t_imgptr));
