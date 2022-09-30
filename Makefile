@@ -1,72 +1,73 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: yalthaus <marvin@42lausanne.ch>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/29 12:23:24 by yalthaus          #+#    #+#              #
-#    Updated: 2022/07/22 14:16:17 by yalthaus         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS_DIR	= ./src/
+SRCS_FILES	=  main.c
+SRCS_FILES	+= init_game.c mapLoading.c map_args.c map_errors.c maputils.c readmap.c ft_tab.c
+SRCS_FILES	+= gameplay.c minimap.c mouse.c player_moves.c player_lateral_moves.c
+SRCS_FILES	+= dda.c distances.c draw.c raycasting.c texturing.c texture_loading.c
+SRCS_FILES	+= ft_atoi.c ft_itoa.c ft_strlen.c get_next_line.c get_next_line_utils.c exit.c time.c
 
-# Exec Name
-NAME	= cub3d
+SRCS		:= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
-# Compilation
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-HEADS		= -I$(INC) -I${LIBFTDIR}
-OPTION		= -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
+LIBFT		= ./libft
+MAKELIB		= ${MAKE} -C ${LIBFT}
 
-# SRC
-SRCDIR 		= ./src/
-INC			= ./inc/
-LIBFTDIR	= ./libft/
-BUILDDIR	= ./build/
-LIBFT		= $(addprefix $(LIBFTDIR), libft.a)
-SRCNAMES	= $(shell ls $(SRCDIR) | grep -E ".+\.c")
-SRCS		= $(addprefix $(SRCDIR), $(SRCNAMES))
+LIBX		= ./mlx
 
-# command + OBJ
-RM		= rm -rf
-MKDIR	= mkdir -p
-MAKE	= make --no-print-directory -C
-OBJS	= $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
+MAKELIBX	= @${MAKE} -C ${LIBX}
 
-# Color
-_COLOR		= \033[32m
-_BOLDCOLOR	= \033[32;1m
-_RESET		= \033[0m
-_CLEAR		= \033[0K\r\c
-_OK			= [\033[32mOK\033[0m]
 
-# Action
+O_DIR		= ./objs/
+HEADS		= -I./inc/ -I${LIBFT} -I${LIBX}
 
-all: $(NAME)
+OBJS_FILES	:= ${SRCS_FILES:.c=.o}
+OBJS		:= ${patsubst %, ${O_DIR}%, ${OBJS_FILES}}
 
-$(BUILDDIR):
-			@mkdir -p $(BUILDDIR)
+OBJS		+= ${LIBFT}/libft.a
 
-$(BUILDDIR)%.o:$(SRCDIR)%.c
-			@echo "[..] $(NAME)... compiling $*.c\r\c"
-			@$(CC) $(CFLAGS) $(HEADS) -o $@ -c $<
-			@echo "$(_CLEAR)"
+OBJS		+= ${LIBX}/libmlx.a
 
-$(LIBFT):
-			@$(MAKE) $(LIBFTDIR) all bonus
 
-$(NAME): $(BUILDDIR) $(LIBFT) $(OBJS)
-			@$(CC) $(CFLAGS) $(OPTION) -o $@ $(OBJS) $(LIBFT) $(LIBS)
-			@echo "$(_OK) $(NAME) compiled"
+
+LIBS		= -framework OpenGL -framework AppKit
+
+
+NAME		= cub3D
+
+CC			= cc
+AR			= ar rcs
+MKDIR		= mkdir
+CP			= cp -f
+RM			= rm -f
+
+CFLAGS		= -Wall -Wextra -Werror
+
+all:		${NAME}
+
+${NAME}:	${O_DIR} ${OBJS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS} -fsanitize=address
+
+${O_DIR}:
+			${MKDIR} ${O_DIR}
+
+${O_DIR}%.o:${SRCS_DIR}%.c | inc/cub3d.h
+			${CC} ${CFLAGS} ${HEADS} -o $@ -c $<
+
+${LIBFT}/libft.a:
+			${MAKELIB} all
+
+${LIBX}/libmlx.a:
+			@${MAKELIBX} all
+
 clean:
-			@rm -rf $(BUILDDIR)
-			@$(MAKE) $(LIBFTDIR) clean
+			${RM} ${OBJS} ${OBJSB}
+			@${RM} -r ${O_DIR}
+			@${MAKELIB} clean
+			@${MAKELIBX} clean
 
-fclean: clean
-			@$(MAKE) $(LIBFTDIR) fclean
-			@rm -f $(NAME)
+fclean:		clean
+			${RM} ${NAME}
+			@${RM} -r ${NAME}.dSYM
+			@${MAKELIB} fclean
 
-re: fclean $(NAME)
+re:			fclean all
 
-.PHONY: all fclean clean re
+.PHONY:		all clean fclean re debug

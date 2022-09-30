@@ -16,34 +16,34 @@ int	args_error(int ac)
 {
 	if (ac == 1)
 	{
-		printf("Please select a map-path in the \"maps\" directory as argument\n");
+		printf("Error\n");
+		printf("Please select a map-path in the\"maps\" directory as argument\n");
 		return (0);
 	}
 	if (ac > 2)
 	{
+		printf("Error\n");
 		printf("Cub3d take only one argument, the path of a map\n");
 		return (0);
 	}
 	return (1);
 }
 
-int	exit_game(t_data *data)
-{
-	(void)data;
-	exit (0);
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_data	data;
 
-	printf("\nStarting game...\n\n");
+	ft_bzero(&data, sizeof(t_data));
+	printf("\nStarting game...\n");
 	if (!args_error(ac))
 		return (0);
 	if (!load_map(&data, av[1]))
 		return (0);
-	init_game(&data);
+	if (init_game(&data))
+	{
+		printf("Error\nError in assets path\n");
+		exit_game(&data);
+	}
 	printf("\nInit done.\n\n");
 	mlx_loop_hook(data.mlx, displayer, &data);
 	mlx_hook(data.win, 2, 1L << 0, gameplay, &data);

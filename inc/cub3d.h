@@ -23,21 +23,27 @@
 # include <stdbool.h>
 # include <string.h>
 # include <math.h>
+# include <stddef.h>
+# include <sys/time.h>
 
 # include "../libft/libft.h"
 # include "../inc/key_macos.h"
 
-//# define WIN_W (1280 * 2)
-# define WIN_W 1280
-//# define WIN_H (720 * 2)
-# define WIN_H 720
+# define SUCCESS 1
+# define ERROR 0
 
-# define SPD	0.1
+//# define WIN_W (1280 * 2)
+# define WIN_W 1920
+//# define WIN_H (720 * 2)
+# define WIN_H 1080
+
+# define SPD 0.1
 # define SMP 5
 
-# define RSP	0.05
+# define RSP 0.05
 
 # define RED 0x00FF0000
+# define BLK 0x00999999
 # define WHT 0x00FFFFFF
 # define GRN 0x0000FF00
 # define BLU 0x000000FF
@@ -65,19 +71,6 @@ typedef struct s_img {
 	int		img_height;
 }				t_img;
 
-typedef struct s_line {
-	float	x1;
-	float	x2;
-	float	y1;
-	float	y2;
-	float	i;
-	float	dx;
-	float	dy;
-	float	step;
-	float	xin;
-	float	yin;
-}				t_line;
-
 typedef struct s_map {
 	int	x;
 	int	y;
@@ -101,7 +94,7 @@ typedef struct s_raycasting {
 	double	deltadisty;
 	double	perpwalldist;
 	double	wallx;
-	double	texwidth;
+	int		texwidth;
 	int		texx;
 	int		texy;
 	double	texpos;
@@ -111,12 +104,18 @@ typedef struct s_raycasting {
 	int		drawend;
 }				t_raycasting;
 
+typedef struct s_frame {
+	int		frame;
+	int		frame_now;
+	size_t	starttime;
+	size_t	timestamp;
+}				t_frame;
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
-	int			j;
-	char		*buff;
 	int			**map;
+	t_frame		*fps;
 	t_imgptr	*img;
 	double		mapwidth;
 	double		mapheight;
@@ -125,13 +124,9 @@ typedef struct s_data {
 	float		pposy;
 	float		pdirx;
 	float		pdiry;
-	int			pdir;
+	char		pdir;
 	float		planex;
 	float		planey;
-	float		dirx;
-	float		diry;
-	float		speed;
-	int			minimap_size;
 	int			activate_minimap;
 	int			activate_mouse;
 	char		*no;
@@ -140,17 +135,17 @@ typedef struct s_data {
 	char		*ea;
 	int			f;
 	int			c;
-	char		*sw_addr;
 	t_imgptr	*n_addr;
-	char		*ew_addr;
-	char		*ww_addr;
+	t_imgptr	*s_addr;
+	t_imgptr	*w_addr;
+	t_imgptr	*e_addr;
 }				t_data;
 
 // Project functions
 int		load_map(t_data *data, char *s);
 void	get_pos(t_data *data);
 void	create_intmap(t_data *data);
-void	init_game(t_data *data);
+int		init_game(t_data *data);
 int		gameplay(int keycode, t_data *data);
 int		displayer(t_data *data);
 void	rendering(t_data *data);
@@ -164,13 +159,32 @@ int		calculate_distance(t_data *data, t_raycasting *rc);
 void	projected_distance(t_raycasting *rc);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
 int		mouse_move(t_data *data);
-int		floorCeiling(t_data *data, t_raycasting *rc);
 int		mouse(int x, int y, t_data *data);
 int		load_assets(t_data *data);
-int		texture_loading(t_data *data);
+int		texture_rendering(t_data *data, t_raycasting *rc);
+int		texturing(t_data *data, t_raycasting *rc, int x);
+int		fill_color(int *output, char *color);
+int		free_tab(char **tab);
+int		ft_selftrim(char **s1, const char *set);
+int		tab_len(char **tab);
+int		search_args(t_data *data, int fd);
+int		open_filename(char *filename);
+int		move_start(t_data *data, float dist);
 
 // Utils function
 int		ft_atoi(const char *nptr);
 size_t	ft_strlen(const char *s);
+int		concat_tab(char ***tab, char *newstr);
+char	*get_next_line(int fd);
+void	remove_gnl_endline(char *str);
+void	init_player_pos(t_data *data, int x, int y, char *ori);
+int		check_around(t_data *data, char **raw, int x, int y);
+int		search_map(char ***raw, int fd);
+int		check_map(char **raw, t_data *data);
+int		convert_map(char **raw, t_data *data);
+void	display_infos(t_data *data);
+int		trgb(int t, int r, int g, int b);
+size_t	time_now(void);
+void	fps(t_data *data);
 
 #endif
