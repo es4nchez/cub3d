@@ -58,6 +58,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new);
 void	ft_lstadd_front(t_list **alst, t_list *new);
 int		ft_atoi(const char *nptr);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+int		ft_count_char(const char *str, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));

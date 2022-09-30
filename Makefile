@@ -30,7 +30,7 @@ OBJS		+= ${LIBX}/libmlx.a
 LIBS		= -framework OpenGL -framework AppKit
 
 
-NAME		= cub3d
+NAME		= cub3D
 
 CC			= cc
 AR			= ar rcs

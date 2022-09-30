@@ -24,12 +24,14 @@ int	fill_arg(t_data *data, char **splitted)
 		data->ea = ft_strdup(splitted[1]);
 	else if (ft_strncmp(splitted[0], "F", 2) == 0 && data->f == -1)
 	{
-		if (!fill_color(&data->f, splitted[1]))
+		if (ft_count_char(splitted[1], ',') != 2
+			|| !fill_color(&data->f, splitted[1]))
 			return (-10);
 	}
 	else if (ft_strncmp(splitted[0], "C", 2) == 0 && data->c == -1)
 	{
-		if (!fill_color(&data->c, splitted[1]))
+		if (ft_count_char(splitted[1], ',') != 2
+			|| !fill_color(&data->c, splitted[1]))
 			return (-10);
 	}
 	else
