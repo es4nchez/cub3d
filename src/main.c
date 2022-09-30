@@ -16,11 +16,13 @@ int	args_error(int ac)
 {
 	if (ac == 1)
 	{
-		printf("Please select a map-path in the \"maps\" directory as argument\n");
+		printf("Error\n");
+		printf("Please select a map-path in the\"maps\" directory as argument\n");
 		return (0);
 	}
 	if (ac > 2)
 	{
+		printf("Error\n");
 		printf("Cub3d take only one argument, the path of a map\n");
 		return (0);
 	}
@@ -39,7 +41,7 @@ int	main(int ac, char **av)
 		return (0);
 	if (init_game(&data))
 	{
-		printf("Error in assets path\n");
+		printf("Error\nError in assets path\n");
 		exit_game(&data);
 	}
 	printf("\nInit done.\n\n");
