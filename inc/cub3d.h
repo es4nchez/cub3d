@@ -111,11 +111,17 @@ typedef struct s_frame {
 	size_t	timestamp;
 }				t_frame;
 
+typedef struct s_door {
+	int			exist;
+	t_imgptr	*dr;
+}				t_door;
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
 	int			**map;
 	t_frame		*fps;
+	t_door		*door;
 	t_imgptr	*img;
 	double		mapwidth;
 	double		mapheight;
@@ -186,5 +192,7 @@ void	display_infos(t_data *data);
 int		trgb(int t, int r, int g, int b);
 size_t	time_now(void);
 void	fps(t_data *data);
+void	door_loading(t_data *data);
+void	open_door(t_data *data);
 
 #endif

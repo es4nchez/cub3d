@@ -39,5 +39,7 @@ int	gameplay(int keycode, t_data *data)
 		data->activate_minimap *= -1;
 	if (keycode == K_P)
 		data->activate_mouse *= -1;
+	if (keycode == K_F)
+		open_door(data);
 	return (0);
 }

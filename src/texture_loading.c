@@ -17,19 +17,19 @@ int	check_assets(t_data *data)
 	int	fd;
 
 	fd = open(data->no, 'r');
-	if (!fd)
+	if (fd == -1)
 		return (1);
 	close(fd);
 	fd = open(data->so, 'r');
-	if (!fd)
+	if (fd == -1)
 		return (1);
 	close(fd);
 	fd = open(data->we, 'r');
-	if (!fd)
+	if (fd == -1)
 		return (1);
 	close(fd);
 	fd = open(data->ea, 'r');
-	if (!fd)
+	if (fd == -1)
 		return (1);
 	close(fd);
 	return (0);

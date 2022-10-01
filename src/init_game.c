@@ -22,6 +22,8 @@ void	init_data(t_data *data)
 	data->fps = ft_calloc(1, sizeof(t_frame));
 	data->fps->frame = 1;
 	data->fps->starttime = time_now();
+	data->door = ft_calloc(1, sizeof(t_door));
+	data->door->exist = 1;
 }
 
 int	move_start(t_data *data, float dist)
@@ -68,6 +70,8 @@ int	init_game(t_data *data)
 			&data->img->line, &data->img->end);
 	if (load_assets(data))
 		return (1);
+	if (data->door->exist)
+		door_loading(data);
 	mlx_mouse_move(data->win, (int)(WIN_W / 2), (int)(WIN_H / 2));
 	mlx_mouse_hide(data->win);
 	return (0);

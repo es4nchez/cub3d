@@ -21,7 +21,8 @@ int	move_front(t_data *data)
 	oldposy = data->pposy;
 	data->pposx += data->pdirx * SPD;
 	data->pposy += data->pdiry * SPD;
-	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1)
+	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1
+		|| data->map[(int)(data->pposy)][(int)(data->pposx)] == 2)
 	{
 		data->pposx = oldposx;
 		data->pposy = oldposy;
@@ -38,7 +39,8 @@ int	move_back(t_data *data)
 	oldposy = data->pposy;
 	data->pposx -= data->pdirx * SPD;
 	data->pposy -= data->pdiry * SPD;
-	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1)
+	if (data->map[(int)(data->pposy)][(int)(data->pposx)] == 1
+		|| data->map[(int)(data->pposy)][(int)(data->pposx)] == 2)
 	{
 		data->pposx = oldposx;
 		data->pposy = oldposy;

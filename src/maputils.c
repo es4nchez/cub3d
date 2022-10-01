@@ -75,7 +75,7 @@ int	check_map(char **raw, t_data *data)
 				init_player_pos(data, i, len, &raw[len][i]);
 			if (raw[len][i] == '0' && !check_around(data, raw, i, len))
 				return (free_raw_map(raw));
-			else if (ft_strchr(" 01", raw[len][i]) == NULL)
+			else if (ft_strchr(" 012", raw[len][i]) == NULL)
 				return (free_raw_map(raw));
 			i++;
 		}
@@ -102,8 +102,9 @@ int	convert_map(char **raw, t_data *data)
 		while (j < data->mapwidth)
 		{
 			data->map[i][j] = 1;
-			if (j < (int)ft_strlen(raw[i]) && raw[i][j] == '0')
-				data->map[i][j] = 0;
+			if (j < (int)ft_strlen(raw[i])
+				&& ft_strchr("02", raw[i][j]) != NULL)
+				data->map[i][j] = raw[i][j] - '0';
 			j++;
 		}
 		i++;
