@@ -51,6 +51,8 @@ int	shoot(int keycode, int x, int y, t_data *data)
 		open_door(data);
 	if (keycode != M_CLK_L)
 		return (0);
+	if (data->gun->gun_frame)
+		return (0);
 	data->gun->gun_loop = 1;
 	pid = fork();
 	if (pid == 0)

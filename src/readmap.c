@@ -103,7 +103,7 @@ int	read_map(t_data *data, char *filename)
 	if (!convert_map(raw, data))
 		return (ERROR);
 	data->door = ft_calloc(1, sizeof(t_door));
-	if (!ft_strncmp(filename, "maps/base.cub", 13))
+	if (!ft_strncmp(filename, "maps/door.cub", 13))
 		data->door->exist = 1;
 	return (SUCCESS);
 }
