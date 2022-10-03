@@ -1,6 +1,6 @@
 SRCS_DIR	= ./src/
 SRCS_FILES	=  main.c
-SRCS_FILES	+= init_game.c mapLoading.c map_args.c map_errors.c maputils.c readmap.c ft_tab.c
+SRCS_FILES	+= init_game.c mapLoading.c map_args.c maputils.c readmap.c ft_tab.c
 SRCS_FILES	+= gameplay.c minimap.c mouse.c player_moves.c player_lateral_moves.c gun.c
 SRCS_FILES	+= dda.c distances.c draw.c raycasting.c texturing.c texture_loading.c door.c
 SRCS_FILES	+= ft_atoi.c ft_itoa.c ft_strlen.c get_next_line.c get_next_line_utils.c exit.c time.c
