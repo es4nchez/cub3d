@@ -12,11 +12,29 @@
 
 #include "../inc/cub3d.h"
 
+void	door_near_by(t_data *data)
+{
+	if (data->map[(int)(data->pposy) - 1][(int)(data->pposx)] == 2)
+		data->map[(int)(data->pposy) - 1][(int)(data->pposx)] = 3;
+	else if (data->map[(int)(data->pposy) - 1][(int)(data->pposx)] == 3)
+		data->map[(int)(data->pposy) - 1][(int)(data->pposx)] = 2;
+	else if (data->map[(int)(data->pposy) + 1][(int)(data->pposx)] == 2)
+		data->map[(int)(data->pposy) + 1][(int)(data->pposx)] = 3;
+	else if (data->map[(int)(data->pposy) + 1][(int)(data->pposx)] == 3)
+		data->map[(int)(data->pposy) + 1][(int)(data->pposx)] = 2;
+	else if (data->map[(int)(data->pposy)][(int)(data->pposx) - 1] == 2)
+		data->map[(int)(data->pposy)][(int)(data->pposx) - 1] = 3;
+	else if (data->map[(int)(data->pposy)][(int)(data->pposx) - 1] == 3)
+		data->map[(int)(data->pposy)][(int)(data->pposx) - 1] = 2;
+	else if (data->map[(int)(data->pposy)][(int)(data->pposx) + 1] == 2)
+		data->map[(int)(data->pposy)][(int)(data->pposx) + 1] = 3;
+	else if (data->map[(int)(data->pposy)][(int)(data->pposx) + 1] == 3)
+		data->map[(int)(data->pposy)][(int)(data->pposx) + 1] = 2;
+}
+
 void	open_door(t_data *data)
 {
-	printf("case : %d\n", data->map[(int)(data->pposy) + 1][(int)(data->pposx)]);
-	if (data->map[(int)(data->pposy) - 1][(int)(data->pposx)] == 2)
-		data->map[(int)(data->pposy) - 1][(int)(data->pposx)] = 0;
+	door_near_by(data);
 }
 
 void	door_loading(t_data *data)

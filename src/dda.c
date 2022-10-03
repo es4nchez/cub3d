@@ -28,7 +28,8 @@ void	dda(t_data *data, t_raycasting *rc)
 			rc->mapy += rc->step_y;
 			rc->side = 1;
 		}
-		if (data->map[rc->mapy][rc->mapx] > 0)
+		if (data->map[rc->mapy][rc->mapx] == 1 ||
+			data->map[rc->mapy][rc->mapx] == 2)
 			rc->hit = 1;
 	}
 }
