@@ -35,10 +35,20 @@ int	check_assets(t_data *data)
 	return (0);
 }
 
+void	load_gun(t_data *data)
+{
+	data->gun->gun = malloc(sizeof(t_img));
+	data->gun->gun->img_path = "./assets/gun.xpm";
+	data->gun->gun->img_name = mlx_xpm_file_to_image(data->mlx,
+			data->gun->gun->img_path,
+			&data->gun->gun->img_width, &data->gun->gun->img_height);
+}
+
 int	load_assets(t_data *data)
 {
 	if (check_assets(data))
 		return (1);
+	load_gun(data);
 	data->n_addr = ft_calloc(1, sizeof(t_imgptr));
 	data->n_addr->img = mlx_xpm_file_to_image(data->mlx, data->no,
 			&data->n_addr->w, &data->n_addr->h);

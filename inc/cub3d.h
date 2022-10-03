@@ -116,12 +116,17 @@ typedef struct s_door {
 	t_imgptr	*dr;
 }				t_door;
 
+typedef	struct s_gun {
+	t_img	*gun;
+}				t_gun;
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
 	int			**map;
 	t_frame		*fps;
 	t_door		*door;
+	t_gun		*gun;
 	t_imgptr	*img;
 	double		mapwidth;
 	double		mapheight;
