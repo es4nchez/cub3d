@@ -38,7 +38,7 @@ MKDIR		= mkdir
 CP			= cp -f
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 all:		${NAME}
 

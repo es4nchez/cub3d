@@ -116,8 +116,15 @@ typedef struct s_door {
 	t_imgptr	*dr;
 }				t_door;
 
-typedef	struct s_gun {
+typedef struct s_gun {
+	int		gun_frame;
+	int		gun_loop;
 	t_img	*gun;
+	t_img	*gun_f1;
+	t_img	*gun_f2;
+	t_img	*gun_f3;
+	t_img	*gun_f4;
+	t_img	*gun_f5;
 }				t_gun;
 
 typedef struct s_data {
@@ -199,5 +206,7 @@ size_t	time_now(void);
 void	fps(t_data *data);
 void	door_loading(t_data *data);
 void	open_door(t_data *data);
+int		shoot(int keycode, int x, int y, t_data *data);
+void	shoot_loop(t_data *data);
 
 #endif

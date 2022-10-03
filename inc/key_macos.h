@@ -89,8 +89,8 @@
 */
 
 # define M_CLK_L 1
-# define M_CLK_R 3
-# define M_CLK_M 2
+# define M_CLK_R 2
+# define M_CLK_M 3
 # define M_SCR_U 4
 # define M_SCR_D 5
 

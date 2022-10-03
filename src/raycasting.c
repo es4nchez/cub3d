@@ -75,9 +75,15 @@ int	displayer(t_data *data)
 	if (data->activate_minimap > 0)
 		minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->win, data->gun->gun->img_name,
-			WIN_H, WIN_W / 2);
 	fps(data);
+	if (data->gun->gun_loop)
+	{
+		data->gun->gun_frame += 1;
+		shoot_loop(data);
+	}
+	else
+		mlx_put_image_to_window(data->mlx, data->win, data->gun->gun->img_name,
+			WIN_W / 2, WIN_H - 500);
 	mlx_string_put(data->mlx, data->win, WIN_W - 80, 20, 20, "FPS : ");
 	mlx_string_put(data->mlx, data->win,
 		WIN_W - 40, 20, 20, ft_itoa(data->fps->frame_now));

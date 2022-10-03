@@ -66,6 +66,8 @@ int	print_minimap(t_data *data, int x, int y, int nb)
 		draw_sqr_minimap(data, minimap, GRY);
 	if (nb == 4)
 		draw_sqr_minimap(data, minimap, WHT);
+	if (nb == 2 || nb == 3)
+		draw_sqr_minimap(data, minimap, WOD);
 	return (0);
 }
 

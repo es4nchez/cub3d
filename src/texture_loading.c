@@ -35,13 +35,43 @@ int	check_assets(t_data *data)
 	return (0);
 }
 
-void	load_gun(t_data *data)
+void	load_gun2(t_data *data)
 {
 	data->gun->gun = malloc(sizeof(t_img));
 	data->gun->gun->img_path = "./assets/gun.xpm";
 	data->gun->gun->img_name = mlx_xpm_file_to_image(data->mlx,
 			data->gun->gun->img_path,
 			&data->gun->gun->img_width, &data->gun->gun->img_height);
+	data->gun->gun_f1 = malloc(sizeof(t_img));
+	data->gun->gun_f1->img_path = "./assets/gun_f1.xpm";
+	data->gun->gun_f1->img_name = mlx_xpm_file_to_image(data->mlx,
+			data->gun->gun_f1->img_path,
+			&data->gun->gun_f1->img_width, &data->gun->gun_f1->img_height);
+	data->gun->gun_f2 = malloc(sizeof(t_img));
+	data->gun->gun_f2->img_path = "./assets/gun_f2.xpm";
+	data->gun->gun_f2->img_name = mlx_xpm_file_to_image(data->mlx,
+			data->gun->gun_f2->img_path,
+			&data->gun->gun_f2->img_width, &data->gun->gun_f2->img_height);
+}
+
+void	load_gun(t_data *data)
+{
+	load_gun2(data);
+	data->gun->gun_f3 = malloc(sizeof(t_img));
+	data->gun->gun_f3->img_path = "./assets/gun_f3.xpm";
+	data->gun->gun_f3->img_name = mlx_xpm_file_to_image(data->mlx,
+			data->gun->gun_f3->img_path,
+			&data->gun->gun_f3->img_width, &data->gun->gun->img_height);
+	data->gun->gun_f4 = malloc(sizeof(t_img));
+	data->gun->gun_f4->img_path = "./assets/gun_f4.xpm";
+	data->gun->gun_f4->img_name = mlx_xpm_file_to_image(data->mlx,
+			data->gun->gun_f4->img_path,
+			&data->gun->gun_f4->img_width, &data->gun->gun_f4->img_height);
+	data->gun->gun_f5 = malloc(sizeof(t_img));
+	data->gun->gun_f5->img_path = "./assets/gun_f5.xpm";
+	data->gun->gun_f5->img_name = mlx_xpm_file_to_image(data->mlx,
+			data->gun->gun_f5->img_path,
+			&data->gun->gun_f5->img_width, &data->gun->gun_f5->img_height);
 }
 
 int	load_assets(t_data *data)
