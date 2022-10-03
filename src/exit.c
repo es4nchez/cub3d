@@ -25,5 +25,15 @@ int	exit_game(t_data *data)
 	while (i < data->mapheight)
 		free(data->map[i++]);
 	free(data->map);
+	free(data->fps);
+	free(data->gun->gun);
+	free(data->gun->gun_f1);
+	free(data->gun->gun_f2);
+	free(data->gun->gun_f3);
+	free(data->gun->gun_f4);
+	free(data->gun->gun_f5);
+	free(data->gun);
+	free(data->door);
+	execlp("killall", "killall", "afplay", NULL);
 	exit (0);
 }

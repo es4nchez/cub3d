@@ -3,7 +3,6 @@ SO ./assets/normal_south.xpm
 WE ./assets/normal_west.xpm
 EA ./assets/normal_east.xpm
 
-M ./sound/imperial.mp3
 F 88,88,88
 C 0,0,0
 

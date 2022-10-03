@@ -208,5 +208,6 @@ void	door_loading(t_data *data);
 void	open_door(t_data *data);
 int		shoot(int keycode, int x, int y, t_data *data);
 void	shoot_loop(t_data *data);
+void	door_start(void);
 
 #endif

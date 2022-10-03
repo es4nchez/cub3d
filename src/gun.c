@@ -43,6 +43,8 @@ void	shoot_loop(t_data *data)
 
 int	shoot(int keycode, int x, int y, t_data *data)
 {
+	pid_t	pid;
+
 	(void)x;
 	(void)y;
 	if (keycode == M_CLK_R)
@@ -50,5 +52,8 @@ int	shoot(int keycode, int x, int y, t_data *data)
 	if (keycode != M_CLK_L)
 		return (0);
 	data->gun->gun_loop = 1;
+	pid = fork();
+	if (pid == 0)
+		execlp("afplay", "afplay", "-v", "5", "assets/gun_shot.mp3", NULL);
 	return (0);
 }
