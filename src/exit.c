@@ -33,7 +33,10 @@ int	exit_game(t_data *data)
 	free(data->gun->gun_f4);
 	free(data->gun->gun_f5);
 	free(data->gun);
-	free(data->door);
-	execlp("killall", "killall", "afplay", NULL);
+	if (data->door->exist)
+	{
+		free(data->door);
+		execlp("killall", "killall", "afplay", NULL);
+	}
 	exit (0);
 }

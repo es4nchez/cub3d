@@ -18,7 +18,7 @@ void	door_start(void)
 
 	pid = fork();
 	if (pid == 0)
-		execlp("afplay", "afplay", "-v", "3", "assets/The_Doors.mp3", NULL);
+		execlp("afplay", "afplay", "-v", "1", "assets/The_Doors.mp3", NULL);
 }
 
 int	door_near_by(t_data *data)
