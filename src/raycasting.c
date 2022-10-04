@@ -90,6 +90,6 @@ int	displayer(t_data *data)
 	mlx_string_put(data->mlx, data->win, WIN_W - 80, 20, 20, "FPS : ");
 	mlx_string_put(data->mlx, data->win,
 		WIN_W - 40, 20, 20, frames);
-	return (1);
 	free(frames);
+	return (1);
 }
