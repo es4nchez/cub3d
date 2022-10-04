@@ -12,6 +12,15 @@
 
 #include "../inc/cub3d.h"
 
+void	kill_music(t_data *data)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		execlp("killall", "killall", "afplay", NULL);
+}
+
 int	exit_game(t_data *data)
 {
 	int	i;
@@ -33,10 +42,7 @@ int	exit_game(t_data *data)
 	free(data->gun->gun_f4);
 	free(data->gun->gun_f5);
 	free(data->gun);
-	if (data->door->exist)
-	{
-		free(data->door);
-		execlp("killall", "killall", "afplay", NULL);
-	}
+	free(data->door);
+	kill_music(data);
 	exit (0);
 }

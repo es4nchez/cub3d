@@ -23,8 +23,7 @@ void	init_data(t_data *data)
 	data->fps->frame = 1;
 	data->fps->starttime = time_now();
 	data->gun = ft_calloc(1, sizeof(t_gun));
-	if (data->door->exist)
-		door_start();
+	door_start();
 }
 
 int	move_start(t_data *data, float dist)
