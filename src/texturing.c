@@ -14,7 +14,7 @@
 
 int	texture_picker(t_data *data, t_raycasting *rc, int pix)
 {
-	if (data->map[rc->mapy][rc->mapx] == 2 && data->door->exist)
+	if (data->map[rc->mapy][rc->mapx] == 2)
 		return (data->door->dr->pxs[(int)pix]);
 	if (rc->side == 0 && rc->raydirx > 0)
 		return (data->n_addr->pxs[(int)pix]);

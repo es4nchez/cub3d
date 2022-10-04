@@ -45,6 +45,5 @@ int	exit_game(t_data *data)
 	free(data->door->dr);
 	free(data->door);
 	kill_music();
-	while (0) ;
 	exit (0);
 }

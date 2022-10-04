@@ -70,8 +70,7 @@ int	init_game(t_data *data)
 			&data->img->line, &data->img->end);
 	if (load_assets(data))
 		return (1);
-	if (data->door->exist)
-		door_loading(data);
+	door_loading(data);
 	mlx_mouse_move(data->win, (int)(WIN_W / 2), (int)(WIN_H / 2));
 	mlx_mouse_hide(data->win);
 	return (0);
