@@ -112,7 +112,6 @@ typedef struct s_frame {
 }				t_frame;
 
 typedef struct s_door {
-	int			exist;
 	t_imgptr	*dr;
 }				t_door;
 
@@ -182,20 +181,26 @@ int		load_assets(t_data *data);
 int		texture_rendering(t_data *data, t_raycasting *rc);
 int		texturing(t_data *data, t_raycasting *rc, int x);
 int		fill_color(int *output, char *color);
-int		free_tab(char **tab);
-int		ft_selftrim(char **s1, const char *set);
-int		tab_len(char **tab);
 int		search_args(t_data *data, int fd);
 int		open_filename(char *filename);
+void	open_door(t_data *data);
+void	door_loading(t_data *data);
+void	shoot_loop(t_data *data);
+int		shoot(int keycode, int x, int y, t_data *data);
+void	fps(t_data *data);
+void	init_player_pos(t_data *data, int x, int y, char *ori);
+void	door_start(void);
 int		move_start(t_data *data, float dist);
 
 // Utils function
 int		ft_atoi(const char *nptr);
 size_t	ft_strlen(const char *s);
+int		ft_selftrim(char **s1, const char *set);
 int		concat_tab(char ***tab, char *newstr);
+int		tab_len(char **tab);
+int		free_tab(char **tab);
 char	*get_next_line(int fd);
 void	remove_gnl_endline(char *str);
-void	init_player_pos(t_data *data, int x, int y, char *ori);
 int		check_around(t_data *data, char **raw, int x, int y);
 int		search_map(char ***raw, int fd);
 int		check_map(char **raw, t_data *data);
@@ -203,11 +208,5 @@ int		convert_map(char **raw, t_data *data);
 void	display_infos(t_data *data);
 int		trgb(int t, int r, int g, int b);
 size_t	time_now(void);
-void	fps(t_data *data);
-void	door_loading(t_data *data);
-void	open_door(t_data *data);
-int		shoot(int keycode, int x, int y, t_data *data);
-void	shoot_loop(t_data *data);
-void	door_start(void);
 
 #endif
