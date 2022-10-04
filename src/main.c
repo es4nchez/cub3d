@@ -17,7 +17,7 @@ int	args_error(int ac)
 	if (ac == 1)
 	{
 		printf("Error\n");
-		printf("Please select a map-path in the\"maps\" directory as argument\n");
+		printf("Please select a map-path in the \"maps\" directory as argument\n");
 		return (0);
 	}
 	if (ac > 2)
