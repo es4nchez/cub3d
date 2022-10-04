@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void	kill_music(t_data *data)
+void	kill_music(void)
 {
 	pid_t	pid;
 
@@ -43,6 +43,6 @@ int	exit_game(t_data *data)
 	free(data->gun->gun_f5);
 	free(data->gun);
 	free(data->door);
-	kill_music(data);
+	kill_music();
 	exit (0);
 }
